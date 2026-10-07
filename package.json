@@ -10,6 +10,7 @@
     "photos:audit": "node scripts/photos/audit.mjs",
     "photos:rename": "node scripts/photos/rename.mjs",
     "photos:migrate": "node scripts/migrate-to-mongodb.mjs",
+    "admin:create": "node --env-file=.env scripts/create-admin.mjs",
     "prebuild": "npm run photos:validate",
     "build": "next build",
     "start": "next start",

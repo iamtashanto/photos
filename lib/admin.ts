@@ -1,4 +1,4 @@
-import { createHmac, timingSafeEqual } from "node:crypto";
+import { createHmac, scryptSync, timingSafeEqual } from "node:crypto";
 import { env, requireAdminConfig } from "@/lib/env";
 import { cookies } from "next/headers";
 import { HttpError } from "@/lib/http";
@@ -26,6 +26,14 @@ export function assertAdminPassword(password: string) {
   const expected = env.adminPassword!;
   return password.length === expected.length &&
     timingSafeEqual(Buffer.from(password), Buffer.from(expected));
+}
+
+export function verifyPassword(password: string, storedHash: string) {
+  const [algorithm, salt, hash] = storedHash.split(":");
+  if (algorithm !== "scrypt" || !salt || !hash) return false;
+  const actual = scryptSync(password, salt, 64);
+  const expected = Buffer.from(hash, "hex");
+  return actual.length === expected.length && timingSafeEqual(actual, expected);
 }
 
 export async function requireAdminSession() {

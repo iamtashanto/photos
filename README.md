@@ -31,6 +31,14 @@ Open `/admin` to upload new images. Public reads are cached for five minutes and
 
 The server uses Mongoose models for photos, collections, users, and visitor likes. Photos support published/draft state, featured ordering, dynamic category values, and Cloudinary asset cleanup on deletion. Admin APIs support photo CRUD, collection CRUD, publishing updates, and visitor like/unlike/count endpoints.
 
+Create or rotate the admin account from environment variables:
+
+```bash
+ADMIN_EMAIL=hello@tashanto.com ADMIN_PASSWORD='use-a-long-password' npm run admin:create
+```
+
+The script is idempotent: running it again updates the existing account's password and admin role. It stores only a scrypt password hash, never the plaintext password.
+
 ## Add a photograph (legacy local workflow)
 
 1. Export a web-ready image and place it in `public/photos/<category>/`.

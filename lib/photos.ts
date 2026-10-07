@@ -16,7 +16,8 @@ const orderPhotos = (items: Photo[]) => [...items].sort((a, b) =>
 const readPhotos = unstable_cache(async (): Promise<Photo[]> => {
   if (!isDatabaseConfigured()) return localPhotos;
   await getMongoose();
-  return PhotoModel.find({ published: { $ne: false } }).lean() as Promise<Photo[]>;
+  const items = await PhotoModel.find({ published: { $ne: false } }).lean();
+  return (items.length ? items : localPhotos) as Photo[];
 }, ["published-photos"], { revalidate: 300, tags: ["photos"] });
 
 const readCollections = unstable_cache(async (): Promise<Collection[]> => {

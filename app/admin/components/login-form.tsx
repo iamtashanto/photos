@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export function LoginForm() {
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
 
@@ -14,7 +15,7 @@ export function LoginForm() {
     const response = await fetch("/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
+      body: JSON.stringify({ email, password }),
     });
     if (!response.ok) {
       setError((await response.json()).error || "Sign in failed.");
@@ -32,6 +33,7 @@ export function LoginForm() {
         <span>Sign in to manage the photography archive.</span>
       </header>
       <form onSubmit={submit} className="contact-form">
+        <label>Email<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required autoComplete="email" /></label>
         <label>
           Password
           <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required autoComplete="current-password" />
