@@ -63,5 +63,41 @@
     "copyright": "© TA Shanto",
     "createdAt": "2026-10-07T05:17:59.636Z",
     "updatedAt": "2026-10-07T05:17:59.636Z"
+  },
+  {
+    "id": "architecture-white-mosque",
+    "slug": "white-mosque",
+    "title": "White Mosque in Open Land",
+    "src": "/photos/architecture/white-mosque.jpg",
+    "width": 1536,
+    "height": 2048,
+    "aspectRatio": 0.75,
+    "orientation": "portrait",
+    "category": "Architecture",
+    "collection": "architecture",
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAAbABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAgX/xAAkEAACAwACAAUFAAAAAAAAAAABAgADERIhBAUxYXETMlGR8f/EABgBAAIDAAAAAAAAAAAAAAAAAAACAQME/8QAGREBAQEAAwAAAAAAAAAAAAAAAAECETFB/9oADAMBAAIRAxEAPwDs0/ZkczdYf3Ia76QhauxG+G2Zs8SWxWbhp6AbPSPbCTpuxW5nCMhJD5x5cGYGxujm8dB+IQ5iHGsprWsCgFXB02FiSfb2EmsstXj9RmLLvYP5/sr0kHTEONB2Zc6vp0HpCMsUFuxCWh//2Q==",
+    "dominantColor": "#b8c8d8",
+    "fileSize": 529069,
+    "sourceModifiedAt": "2026-10-07T10:03:08.642Z",
+    "dateAdded": "2015-04-01",
+    "featured": false,
+    "homepageFeatured": false,
+    "tags": [
+      "old-mobile",
+      "architecture",
+      "mosque"
+    ],
+    "alt": "A white mosque standing in green countryside",
+    "copyright": "© TA Shanto",
+    "createdAt": "2026-10-07T10:03:09.145Z",
+    "updatedAt": "2026-10-07T10:03:09.145Z",
+    "description": "A small white mosque rises from the green edge of the countryside in a softly coloured frame.",
+    "camera": "iphone 15",
+    "lens": "Built-in lens",
+    "focalLength": "Not recorded",
+    "aperture": "Not recorded",
+    "shutterSpeed": "Not recorded",
+    "iso": 0,
+    "dateCaptured": "2015-04-01"
   }
 ]

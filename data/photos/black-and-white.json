@@ -37,5 +37,41 @@
     "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAAeABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBAwUG/8QAIxAAAQQCAQMFAAAAAAAAAAAAAQACAxEEIQVBUXESEyIxMv/EABUBAQEAAAAAAAAAAAAAAAAAAAEA/8QAGREBAQADAQAAAAAAAAAAAAAAABEBEiEx/9oADAMBAAIRAxEAPwDnGD1fK9hy1s6QNggj6hgcbHcLLx4zJIKodNmrWnyZ9x0QDRYhaD5pVGufSgkJGgEJYijsUUJohnj5Y43l7/povypy8507yS4gdgkb1QUA7CJ2nbkWfreihBFFCU//2Q==",
     "fileSize": 1924695,
     "sourceModifiedAt": "2026-10-07T04:57:58.565Z"
+  },
+  {
+    "id": "black-and-white-old-mobile-memory",
+    "slug": "old-mobile-memory",
+    "title": "An Old Mobile Memory",
+    "src": "/photos/black-and-white/old-mobile-memory.jpg",
+    "width": 480,
+    "height": 600,
+    "aspectRatio": 0.8,
+    "orientation": "portrait",
+    "category": "Black & White",
+    "collection": "black-and-white",
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAAZABQDASIAAhEBAxEB/8QAGgAAAwADAQAAAAAAAAAAAAAAAAQFAQIDBv/EACkQAAIBBAECAwkAAAAAAAAAAAECAwAEESESMVEFFDIGEzNBRGFxc/D/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A884flkr070zbyz2oZEYASrsdxTr2nvUJAOtkgVylWIxQxJGVkTJzgDl06mg2SSQxqPNW8GBjDZyfv/dqKo2fs8t9apcGYxlhtSuaKDIeFLRuStsEEgjeqmQyqwnLW5lCqNltp8s6pm5+APwaV8L+q/S1BSe5mXj5adYkKg8OfpOKKmn1Gig//9k=",
+    "dominantColor": "#282828",
+    "fileSize": 75696,
+    "sourceModifiedAt": "2026-10-07T10:03:08.696Z",
+    "dateAdded": "2016-08-17",
+    "featured": false,
+    "homepageFeatured": false,
+    "tags": [
+      "old-mobile",
+      "black and white",
+      "memory"
+    ],
+    "alt": "A grainy monochrome memory photograph",
+    "copyright": "© TA Shanto",
+    "createdAt": "2026-10-07T10:03:09.155Z",
+    "updatedAt": "2026-10-07T10:03:09.155Z",
+    "description": "A low-resolution monochrome frame preserved as a small piece of an earlier photographic life.",
+    "camera": "BlackBerry Curve 8520",
+    "lens": "Built-in lens",
+    "focalLength": "Not recorded",
+    "aperture": "Not recorded",
+    "shutterSpeed": "Not recorded",
+    "iso": 0,
+    "dateCaptured": "2016-08-17"
   }
 ]
