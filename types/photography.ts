@@ -4,7 +4,7 @@ export const photoCategories = [
   "Still Life", "Miscellaneous",
 ] as const;
 
-export type PhotoCategory = (typeof photoCategories)[number];
+export type PhotoCategory = string;
 export type PhotoOrientation = "portrait" | "landscape" | "square" | "panorama";
 
 export interface Photo {

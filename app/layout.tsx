@@ -2,13 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
-import { getFeaturedPhotos } from "@/lib/photos";
+import { photos as localPhotos } from "@/data/photos";
 import { SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const serif = Cormorant_Garamond({ subsets: ["latin"], variable: "--font-serif", display: "swap", weight: ["400", "500", "600"] });
-const defaultImage = getFeaturedPhotos()[0];
+const defaultImage = localPhotos.find((photo) => photo.homepageFeatured || photo.featured) || localPhotos[0];
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

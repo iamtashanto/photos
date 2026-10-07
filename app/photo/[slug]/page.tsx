@@ -4,11 +4,11 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { ShareButton } from "@/components/shared/share-button";
-import { collections } from "@/data/collections";
-import { photos } from "@/data/photos";
 import {
   formatPhotoDate,
   getAdjacentPhotos,
+  getAllPhotos,
+  getCollections,
   getPhotoBySlug,
   getPhotoLocation,
 } from "@/lib/photos";
@@ -21,8 +21,8 @@ import {
   photoSeoDescription,
 } from "@/lib/seo";
 
-export function generateStaticParams() {
-  return photos.map(({ slug }) => ({ slug }));
+export async function generateStaticParams() {
+  return (await getAllPhotos()).map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -31,7 +31,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const photo = getPhotoBySlug(slug);
+  const photo = await getPhotoBySlug(slug);
   if (!photo) return {};
   const description = photoSeoDescription(photo);
   // Ensure publishedTime is a full ISO 8601 string (some OG parsers reject date-only strings)
@@ -70,15 +70,15 @@ export default async function PhotoPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const photo = getPhotoBySlug(slug);
+  const photo = await getPhotoBySlug(slug);
   if (!photo) notFound();
 
-  const { previous, next } = getAdjacentPhotos(slug);
+  const { previous, next } = await getAdjacentPhotos(slug);
   // Guard: if somehow adjacent is missing (empty photo set), fall back to gallery
   const prevSlug = previous?.slug;
   const nextSlug = next?.slug;
 
-  const collection = collections.find((item) => item.name === photo.category);
+  const collection = (await getCollections()).find((item) => item.name === photo.category);
   // Guard: if the photo's category doesn't match any collection, surface gracefully
   if (!collection) notFound();
 

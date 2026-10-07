@@ -1,6 +1,6 @@
 # TA Shanto Photography
 
-A production-ready personal photography portfolio for **TA Shanto**, built with Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, and local image assets.
+A production-ready personal photography portfolio for **TA Shanto**, built with Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, MongoDB and Cloudinary. Without database credentials it continues to use the bundled local data as a development fallback.
 
 ## Run locally
 
@@ -17,7 +17,21 @@ npm run build
 npm start
 ```
 
-## Add a photograph
+## Database, Cloudinary, and admin setup
+
+Copy `.env.example` to `.env.local` and set `MONGODB_URI`, `MONGODB_DB`, `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, `ADMIN_PASSWORD`, and a long random `ADMIN_SECRET`. Then import the existing JSON data:
+
+```bash
+npm run photos:migrate
+# Add --upload to move local files into Cloudinary and replace their URLs
+npm run photos:migrate -- --upload
+```
+
+Open `/admin` to upload new images. Public reads are cached for five minutes and admin writes invalidate the photo cache.
+
+The server uses Mongoose models for photos, collections, users, and visitor likes. Photos support published/draft state, featured ordering, dynamic category values, and Cloudinary asset cleanup on deletion. Admin APIs support photo CRUD, collection CRUD, publishing updates, and visitor like/unlike/count endpoints.
+
+## Add a photograph (legacy local workflow)
 
 1. Export a web-ready image and place it in `public/photos/<category>/`.
 2. Run `npm run photos:sync`.

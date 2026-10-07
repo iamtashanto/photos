@@ -22,11 +22,6 @@ export function Navbar() {
   const menuRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
 
-  // Close menu on route change
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -69,7 +64,7 @@ export function Navbar() {
     <header
       className={`site-header ${pathname === "/" && !scrolled ? "hero-header" : ""} ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}
     >
-      <Link href="/" className="wordmark" aria-label="TA Shanto Photography — home">
+      <Link href="/" className="wordmark" aria-label="TA Shanto Photography — home" onClick={() => setOpen(false)}>
         <span>TA SHANTO</span>
         <small>PHOTOGRAPHY</small>
       </Link>

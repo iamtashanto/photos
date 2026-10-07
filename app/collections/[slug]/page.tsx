@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { GalleryExperience } from "@/components/gallery/gallery-experience";
-import { collections } from "@/data/collections";
-import { getCollectionBySlug, getPhotosByCategory } from "@/lib/photos";
+import { getCollectionBySlug, getCollections, getPhotosByCategory } from "@/lib/photos";
 import { SITE_NAME, absoluteUrl, breadcrumbSchema, photoCreator } from "@/lib/seo";
 
-export function generateStaticParams() {
-  return collections.map(({ slug }) => ({ slug }));
+export async function generateStaticParams() {
+  return (await getCollections()).map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -15,9 +14,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const collection = getCollectionBySlug(slug);
+  const collection = await getCollectionBySlug(slug);
   if (!collection) return {};
-  const photos = getPhotosByCategory(collection.name);
+  const photos = await getPhotosByCategory(collection.name);
   const cover = photos.find((p) => p.slug === collection.coverPhotoSlug) ?? photos[0];
   const description = `${collection.description} Explore ${collection.name.toLowerCase()} photography by TA Shanto from Bangladesh and beyond.`;
   return {
@@ -47,10 +46,10 @@ export default async function CollectionPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const collection = getCollectionBySlug(slug);
+  const collection = await getCollectionBySlug(slug);
   if (!collection) notFound();
 
-  const photos = getPhotosByCategory(collection.name);
+  const photos = await getPhotosByCategory(collection.name);
 
   const schema = {
     "@context": "https://schema.org",

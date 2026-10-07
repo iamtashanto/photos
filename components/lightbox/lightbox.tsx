@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ExternalLink, Info, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { formatPhotoDate, getPhotoLocation } from "@/lib/photos";
+import { formatPhotoDate, getPhotoLocation } from "@/lib/photo-format";
 import { getPhotoUrl } from "@/lib/image-source";
 import type { Photo } from "@/types/photography";
 

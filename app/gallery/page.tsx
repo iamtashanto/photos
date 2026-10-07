@@ -5,8 +5,8 @@ import { absoluteUrl, breadcrumbSchema, createPageMetadata, photoCreator } from 
 
 export const metadata: Metadata = createPageMetadata("Gallery", "Explore TA Shanto’s photography archive: street, travel, portrait, landscape and documentary photographs from Bangladesh and beyond.", "/gallery");
 
-export default function GalleryPage() {
-  const photos = getAllPhotos();
+export default async function GalleryPage() {
+  const photos = await getAllPhotos();
   const schema = { "@context": "https://schema.org", "@graph": [
     { "@type": "CollectionPage", "@id": absoluteUrl("/gallery"), name: "TA Shanto Photography Gallery", description: "Street, travel, portrait, landscape and documentary photography from Bangladesh and beyond.", url: absoluteUrl("/gallery"), mainEntity: { "@type": "ItemList", numberOfItems: photos.length, itemListElement: photos.map((photo, index) => ({ "@type": "ListItem", position: index + 1, url: absoluteUrl(`/photo/${photo.slug}`), item: { "@type": "ImageObject", name: photo.title, contentUrl: absoluteUrl(photo.src), creator: { "@type": "Person", name: photoCreator(photo) } } })) } },
     breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Gallery", path: "/gallery" }]),

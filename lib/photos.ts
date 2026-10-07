@@ -1,44 +1,55 @@
-import { collections } from "@/data/collections";
-import { photos } from "@/data/photos";
-import type { Photo, PhotoCategory } from "@/types/photography";
+import { unstable_cache } from "next/cache";
+import { collections as localCollections } from "@/data/collections";
+import { photos as localPhotos } from "@/data/photos";
+import { isDatabaseConfigured, getMongoose } from "@/lib/db";
+import { PhotoModel } from "@/models/photo.model";
+import { CollectionModel } from "@/models/collection.model";
+import type { Collection, Photo, PhotoCategory } from "@/types/photography";
+export { formatPhotoDate, getPhotoLocation, getPhotoYear } from "@/lib/photo-format";
 
 const orderPhotos = (items: Photo[]) => [...items].sort((a, b) =>
   (a.sortOrder ?? Number.MAX_SAFE_INTEGER) - (b.sortOrder ?? Number.MAX_SAFE_INTEGER)
-  || b.dateAdded.localeCompare(a.dateAdded)
+  || (b.dateAdded || "").localeCompare(a.dateAdded || "")
   || (b.dateCaptured ?? "").localeCompare(a.dateCaptured ?? "")
   || a.slug.localeCompare(b.slug));
 
-export const getAllPhotos = () => orderPhotos(photos);
-export const getFeaturedPhotos = () => [...photos]
-  .filter((photo) => photo.homepageFeatured || photo.featured)
+const readPhotos = unstable_cache(async (): Promise<Photo[]> => {
+  if (!isDatabaseConfigured()) return localPhotos;
+  await getMongoose();
+  return PhotoModel.find({ published: { $ne: false } }).lean() as Promise<Photo[]>;
+}, ["published-photos"], { revalidate: 300, tags: ["photos"] });
+
+const readCollections = unstable_cache(async (): Promise<Collection[]> => {
+  if (!isDatabaseConfigured()) return localCollections;
+  await getMongoose();
+  const items = await CollectionModel.find({ isPublished: { $ne: false } }).sort({ sortOrder: 1, name: 1 }).lean();
+  return items.length ? items : localCollections;
+}, ["photo-collections"], { revalidate: 300, tags: ["collections"] });
+
+export const getAllPhotos = async () => orderPhotos(await readPhotos());
+export const getFeaturedPhotos = async () => (await readPhotos()).filter((photo) => photo.homepageFeatured || photo.featured)
   .sort((a, b) => (a.featuredOrder ?? Number.MAX_SAFE_INTEGER) - (b.featuredOrder ?? Number.MAX_SAFE_INTEGER) || b.dateAdded.localeCompare(a.dateAdded));
-export const getLatestPhotos = (limit = 4) => [...photos].filter((photo) => !photo.altNeedsReview).sort((a, b) => b.dateAdded.localeCompare(a.dateAdded)).slice(0, limit);
+export const getLatestPhotos = async (limit = 4) => (await readPhotos()).filter((photo) => !photo.altNeedsReview).sort((a, b) => b.dateAdded.localeCompare(a.dateAdded)).slice(0, limit);
 export const getRecentPhotos = getLatestPhotos;
-export const getPhotoBySlug = (slug: string) => photos.find((photo) => photo.slug === slug);
-export const getPhotosByCategory = (category: PhotoCategory) => orderPhotos(photos.filter((photo) => photo.category === category));
-export const getPhotosByTag = (tag: string) => orderPhotos(photos.filter((photo) => photo.tags.some((item) => item.toLowerCase() === tag.toLowerCase())));
-export const getPhotosByYear = (year: number) => orderPhotos(photos.filter((photo) => photo.dateCaptured?.startsWith(String(year))));
-export const getPhotosByCamera = (camera: string) => orderPhotos(photos.filter((photo) => photo.camera?.toLowerCase() === camera.toLowerCase()));
-export const getCollectionBySlug = (slug: string) => collections.find((collection) => collection.slug === slug);
-export const getCollectionPhotos = (slug: string) => { const collection = getCollectionBySlug(slug); return collection ? getPhotosByCategory(collection.name) : []; };
-export const getCollectionCover = (slug: string) => { const collection = getCollectionBySlug(slug); if (!collection) return undefined; const collectionPhotos = getPhotosByCategory(collection.name); return (collection.coverPhotoSlug && getPhotoBySlug(collection.coverPhotoSlug)) || collectionPhotos[0]; };
-export const getAdjacentPhotos = (slug: string) => {
-  const ordered = getAllPhotos();
+export const getPhotoBySlug = async (slug: string) => (await readPhotos()).find((photo) => photo.slug === slug);
+export const getPhotosByCategory = async (category: PhotoCategory) => orderPhotos((await readPhotos()).filter((photo) => photo.category === category));
+export const getPhotosByTag = async (tag: string) => orderPhotos((await readPhotos()).filter((photo) => photo.tags.some((item) => item.toLowerCase() === tag.toLowerCase())));
+export const getPhotosByYear = async (year: number) => orderPhotos((await readPhotos()).filter((photo) => photo.dateCaptured?.startsWith(String(year))));
+export const getPhotosByCamera = async (camera: string) => orderPhotos((await readPhotos()).filter((photo) => photo.camera?.toLowerCase() === camera.toLowerCase()));
+export const getCollectionBySlug = async (slug: string) => (await readCollections()).find((collection) => collection.slug === slug);
+export const getCollectionPhotos = async (slug: string) => {
+  const collection = await getCollectionBySlug(slug);
+  return collection ? getPhotosByCategory(collection.name) : [];
+};
+export const getCollectionCover = async (slug: string) => {
+  const collection = await getCollectionBySlug(slug);
+  if (!collection) return undefined;
+  const collectionPhotos = await getPhotosByCategory(collection.name);
+  return (collection.coverPhotoSlug && (await getPhotoBySlug(collection.coverPhotoSlug))) || collectionPhotos[0];
+};
+export const getAdjacentPhotos = async (slug: string) => {
+  const ordered = await getAllPhotos();
   const index = ordered.findIndex((photo) => photo.slug === slug);
   return { previous: index > 0 ? ordered[index - 1] : ordered.at(-1), next: index >= 0 && index < ordered.length - 1 ? ordered[index + 1] : ordered[0] };
 };
-
-export const formatPhotoDate = (date?: string, detailed = false) => date
-  ? new Intl.DateTimeFormat("en-GB", { day: detailed ? "numeric" : undefined, month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${date.slice(0, 10)}T00:00:00Z`))
-  : "Date not recorded";
-export const getPhotoYear = (photo: Photo) => photo.dateCaptured?.slice(0, 4) ?? photo.dateAdded.slice(0, 4);
-export const getPhotoLocation = (photo: Photo) => {
-  const parts = [photo.location || photo.city, photo.country].filter(Boolean) as string[];
-  return parts.filter((part, index) =>
-    !parts.slice(0, index).some((previous) => {
-      const current = part.toLowerCase();
-      const earlier = previous.toLowerCase();
-      return current === earlier || current.includes(earlier) || earlier.includes(current);
-    }),
-  ).join(", ") || "Location not recorded";
-};
+export const getCollections = readCollections;

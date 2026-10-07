@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PhotoImage } from "@/components/photo/photo-image";
-import { collections } from "@/data/collections";
-import { getCollectionCover, getPhotosByCategory } from "@/lib/photos";
+import { getCollectionCover, getCollections, getPhotosByCategory } from "@/lib/photos";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata(
@@ -12,7 +11,13 @@ export const metadata: Metadata = createPageMetadata(
   "/collections",
 );
 
-export default function CollectionsPage() {
+export default async function CollectionsPage() {
+  const collections = await getCollections();
+  const collectionData = await Promise.all(collections.map(async (collection) => ({
+    collection,
+    photo: await getCollectionCover(collection.slug),
+    count: (await getPhotosByCategory(collection.name)).length,
+  })));
   return (
     <div className="page-shell collections-page">
       <header className="page-intro">
@@ -22,9 +27,7 @@ export default function CollectionsPage() {
       </header>
 
       <div className="collections-grid">
-        {collections.map((collection, index) => {
-          const photo = getCollectionCover(collection.slug);
-          const count = getPhotosByCategory(collection.name).length;
+        {collectionData.map(({ collection, photo, count }, index) => {
           return (
             <Link
               href={`/collections/${collection.slug}`}

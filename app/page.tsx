@@ -3,7 +3,6 @@ import { ArrowUpRight } from "lucide-react";
 import { HomeHero } from "@/components/home/home-hero";
 import { Reveal } from "@/components/motion/reveal";
 import { PhotoImage } from "@/components/photo/photo-image";
-import { collections } from "@/data/collections";
 import {
   getCollectionCover,
   getFeaturedPhotos,
@@ -11,16 +10,21 @@ import {
   getPhotosByCategory,
   getPhotoYear,
   getRecentPhotos,
+  getCollections,
 } from "@/lib/photos";
 
-export default function Home() {
-  const featured = getFeaturedPhotos();
-  const recent = getRecentPhotos(4);
+export default async function Home() {
+  const [featured, recent, collections] = await Promise.all([getFeaturedPhotos(), getRecentPhotos(4), getCollections()]);
   const hero = featured[0];
   const selected = featured.filter((photo) => photo.id !== hero.id).slice(0, 4);
   const homeCollections = collections.filter((collection) =>
     ["street", "nature", "travel", "portrait", "architecture", "night"].includes(collection.slug),
   );
+  const homeCollectionData = await Promise.all(homeCollections.map(async (collection) => ({
+    collection,
+    cover: await getCollectionCover(collection.slug),
+    count: (await getPhotosByCategory(collection.name)).length,
+  })));
 
   return (
     <>
@@ -77,9 +81,7 @@ export default function Home() {
           <h2>Stories, in chapters.</h2>
         </Reveal>
         <div className="home-collection-grid">
-          {homeCollections.map((collection, index) => {
-            const cover = getCollectionCover(collection.slug);
-            const count = getPhotosByCategory(collection.name).length;
+          {homeCollectionData.map(({ collection, cover, count }, index) => {
             return (
               <Link
                 href={`/collections/${collection.slug}`}

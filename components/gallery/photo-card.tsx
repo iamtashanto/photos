@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { Photo } from "@/types/photography";
 import { PhotoImage } from "@/components/photo/photo-image";
-import { getPhotoLocation, getPhotoYear } from "@/lib/photos";
+import { getPhotoLocation, getPhotoYear } from "@/lib/photo-format";
 
 export function PhotoCard({ photo, onOpen }: { photo: Photo; onOpen?: () => void }) {
   return (
