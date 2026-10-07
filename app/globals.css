@@ -897,6 +897,20 @@ main { min-height: 80vh; }
   font: 400 clamp(1.8rem, 2.8vw, 2.85rem) / 1.25 var(--serif);
   margin: 0;
 }
+.story-prose { display: grid; gap: 1rem; align-content: start; }
+.story-label {
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  margin: 0.35rem 0 0;
+  text-transform: uppercase;
+}
+.story-description,
+.story-narrative {
+  font: 400 clamp(1.45rem, 2.2vw, 2.15rem) / 1.25 var(--serif);
+  margin: 0 0 1.75rem;
+}
+.story-narrative { color: var(--muted); font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.65; }
 .metadata dl { margin: 0; }
 .metadata dl div {
   display: grid;

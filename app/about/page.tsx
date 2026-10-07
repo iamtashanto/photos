@@ -24,7 +24,7 @@ export default function AboutPage() {
         <div className="about-portrait">
           <Image
             src="/profile/tashanto-sample.png"
-            alt="TA Shanto, photographer based in Dhaka, Bangladesh"
+            alt="TA Shanto, photographer based in Barishal, Bangladesh"
             fill
             preload
             sizes="(max-width: 800px) 100vw, 42vw"
@@ -34,7 +34,7 @@ export default function AboutPage() {
 
         <div className="about-copy">
           <p className="lead">
-            I&apos;m TA Shanto, a photographer based in Dhaka. I photograph the quiet tension between
+            I&apos;m TA Shanto, a photographer based in Barishal. I photograph the quiet tension between
             people and place—often in available light, often while walking, always with curiosity.
           </p>
 
@@ -67,7 +67,7 @@ export default function AboutPage() {
             </div>
             <div>
               <dt>Based</dt>
-              <dd>Dhaka, Bangladesh · Available for select assignments</dd>
+              <dd>Barishal, Bangladesh · Available for select assignments</dd>
             </div>
           </dl>
 

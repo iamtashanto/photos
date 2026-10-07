@@ -80,8 +80,8 @@
     "fileSize": 708622,
     "sourceModifiedAt": "2026-10-07T10:03:08.630Z",
     "dateAdded": "2018-06-30",
-    "featured": false,
-    "homepageFeatured": false,
+    "featured": true,
+    "homepageFeatured": true,
     "tags": [
       "old-mobile",
       "field",
@@ -98,7 +98,11 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2018-06-30"
+    "dateCaptured": "2018-06-30",
+    "location": "Rural Bangladesh",
+    "country": "Bangladesh",
+    "story": "A lone walker crosses the field beneath a bright sky. The scene is unhurried, the kind of moment an old phone made worth keeping.",
+    "featuredOrder": 1
   },
   {
     "id": "nature-silhouette-tree-line",
@@ -134,7 +138,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2019-12-03"
+    "dateCaptured": "2019-12-03",
+    "location": "Rural Bangladesh",
+    "country": "Bangladesh",
+    "story": "The trees became a single dark line as daylight thinned, turning an everyday horizon into a graphic landscape."
   },
   {
     "id": "nature-tree-at-sunset",
@@ -170,6 +177,9 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2020-10-21"
+    "dateCaptured": "2020-10-21",
+    "location": "Rural Bangladesh",
+    "country": "Bangladesh",
+    "story": "One tree holds the sunset in place, its branches reduced to a quiet silhouette against the last light."
   }
 ]

@@ -33,7 +33,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2017-11-06"
+    "dateCaptured": "2017-11-06",
+    "location": "Munshiganj",
+    "country": "Bangladesh",
+    "story": "The river held the sky like a dark mirror. The old phone caught the brief pause before the clouds changed shape."
   },
   {
     "id": "landscape-dated-field-light",
@@ -69,7 +72,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2018-03-22"
+    "dateCaptured": "2018-03-22",
+    "location": "Naogaon",
+    "country": "Bangladesh",
+    "story": "A timestamp turns this simple field into an archive: one evening, one camera, and light that has not returned in quite the same way."
   },
   {
     "id": "landscape-dated-river-field",
@@ -106,7 +112,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2018-12-14"
+    "dateCaptured": "2018-12-14",
+    "location": "Naogaon",
+    "country": "Bangladesh",
+    "story": "Water, distant trees and a pale sky form a quiet rural record from the early days of a pocket camera."
   },
   {
     "id": "landscape-dated-sunset-field",
@@ -143,7 +152,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2019-05-09"
+    "dateCaptured": "2019-05-09",
+    "location": "Naogaon",
+    "country": "Bangladesh",
+    "story": "The dated frame keeps the last orange light of a day that might otherwise have disappeared without a trace."
   },
   {
     "id": "landscape-field-after-sunset",
@@ -179,7 +191,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2019-10-27"
+    "dateCaptured": "2019-10-27",
+    "location": "Rural Bangladesh",
+    "country": "Bangladesh",
+    "story": "After the sun went down, the field became quieter and bluer. The low resolution only deepens the feeling of distance."
   },
   {
     "id": "landscape-last-light-over-field",
@@ -215,7 +230,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2020-02-11"
+    "dateCaptured": "2020-02-11",
+    "location": "Rural Bangladesh",
+    "country": "Bangladesh",
+    "story": "A small sun at the edge of the frame makes the whole field feel temporary, held for a second before evening."
   },
   {
     "id": "landscape-palms-in-reflection",
@@ -251,7 +269,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2020-07-19"
+    "dateCaptured": "2020-07-19",
+    "location": "Naogaon",
+    "country": "Bangladesh",
+    "story": "The palms doubled themselves in still water, turning a familiar rural view into a simple study of repetition."
   },
   {
     "id": "landscape-pink-clouds-over-field",
@@ -287,7 +308,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2021-01-05"
+    "dateCaptured": "2021-01-05",
+    "location": "Rural Bangladesh",
+    "country": "Bangladesh",
+    "story": "Pink cloud light moved across the field while the phone waited for the horizon to settle into colour."
   },
   {
     "id": "landscape-purple-river-sunset",
@@ -305,8 +329,8 @@
     "fileSize": 386241,
     "sourceModifiedAt": "2026-10-07T10:03:08.651Z",
     "dateAdded": "2021-06-28",
-    "featured": false,
-    "homepageFeatured": false,
+    "featured": true,
+    "homepageFeatured": true,
     "tags": [
       "old-mobile",
       "sunset",
@@ -323,7 +347,11 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2021-06-28"
+    "dateCaptured": "2021-06-28",
+    "location": "Munshiganj",
+    "country": "Bangladesh",
+    "story": "At purple hour, the river became the subject: wide, reflective and briefly more vivid than the land around it.",
+    "featuredOrder": 2
   },
   {
     "id": "landscape-quiet-river-sunset",
@@ -359,7 +387,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2021-11-13"
+    "dateCaptured": "2021-11-13",
+    "location": "Munshiganj",
+    "country": "Bangladesh",
+    "story": "The river quieted as the day ended, leaving a thin line of warm light between water and sky."
   },
   {
     "id": "landscape-reflective-sunset",
@@ -395,7 +426,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2022-02-24"
+    "dateCaptured": "2022-02-24",
+    "location": "Rural Bangladesh",
+    "country": "Bangladesh",
+    "story": "Clouds and water met in the same broken colours, a reminder that even an old phone could hold a beautiful atmosphere."
   },
   {
     "id": "landscape-road-to-sunset",
@@ -431,7 +465,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2022-09-16"
+    "dateCaptured": "2022-09-16",
+    "location": "Rural Bangladesh",
+    "country": "Bangladesh",
+    "story": "The road offered a natural direction into the light, with the open countryside making the final minutes of day feel expansive."
   },
   {
     "id": "landscape-001",
@@ -507,6 +544,9 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2016-02-08"
+    "dateCaptured": "2016-02-08",
+    "location": "Munshiganj",
+    "country": "Bangladesh",
+    "story": "The storm gathered slowly over the river. The dark frame keeps the tension of watching weather arrive from a distance."
   }
 ]

@@ -80,8 +80,8 @@
     "fileSize": 529069,
     "sourceModifiedAt": "2026-10-07T10:03:08.642Z",
     "dateAdded": "2015-04-01",
-    "featured": false,
-    "homepageFeatured": false,
+    "featured": true,
+    "homepageFeatured": true,
     "tags": [
       "old-mobile",
       "architecture",
@@ -98,6 +98,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2015-04-01"
+    "dateCaptured": "2026-04-01",
+    "location": "Rural Bangladesh",
+    "country": "Bangladesh",
+    "story": "The mosque appeared between trees and open fields, a quiet landmark in an afternoon remembered more by colour than by coordinates.",
+    "featuredOrder": 4
   }
 ]

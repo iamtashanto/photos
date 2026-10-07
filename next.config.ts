@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1600, 1920],
-    // quality is set per-image at the <Image> component level (quality={88} / quality={92})
+    qualities: [75, 88, 90, 92],
   },
   // Allow both localhost and 127.0.0.1 during local development
   allowedDevOrigins: ["127.0.0.1", "localhost"],

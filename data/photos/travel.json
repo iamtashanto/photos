@@ -97,7 +97,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2017-07-15"
+    "dateCaptured": "2017-07-15",
+    "location": "Munshiganj",
+    "country": "Bangladesh",
+    "story": "A small figure stands beside the river beneath a broad sky, making the landscape feel larger and more contemplative."
   },
   {
     "id": "travel-old-mosque-garden",
@@ -133,7 +136,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2020-05-03"
+    "dateCaptured": "2020-05-03",
+    "location": "Rural Bangladesh",
+    "country": "Bangladesh",
+    "story": "The mosque sits behind layers of leaves, discovered rather than announced, like a quiet stop on an old afternoon walk."
   },
   {
     "id": "travel-river-silhouette",
@@ -169,6 +175,9 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2022-11-08"
+    "dateCaptured": "2022-11-08",
+    "location": "Munshiganj",
+    "country": "Bangladesh",
+    "story": "The seated silhouette and the dark river share the same stillness, a modest frame with the atmosphere of a memory."
   }
 ]

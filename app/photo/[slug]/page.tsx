@@ -149,7 +149,16 @@ export default async function PhotoPage({
         </header>
 
         <div className="story-copy">
-          <p>{photo.story || photo.description || photo.alt}</p>
+          <div className="story-prose">
+            <p className="story-label">Description</p>
+            <p className="story-description">{photo.description || photo.alt}</p>
+            {photo.story && (
+              <>
+                <p className="story-label">Story</p>
+                <p className="story-narrative">{photo.story}</p>
+              </>
+            )}
+          </div>
           <div className="metadata">
             <dl>
               {photo.dateCaptured && (
@@ -158,12 +167,10 @@ export default async function PhotoPage({
                   <dd>{formatPhotoDate(photo.dateCaptured, true)}</dd>
                 </div>
               )}
-              {(photo.location || photo.city || photo.country) && (
-                <div>
-                  <dt>Location</dt>
-                  <dd>{getPhotoLocation(photo)}</dd>
-                </div>
-              )}
+              <div>
+                <dt>Location</dt>
+                <dd>{getPhotoLocation(photo)}</dd>
+              </div>
               {photo.camera && (
                 <div>
                   <dt>Camera</dt>
@@ -188,7 +195,7 @@ export default async function PhotoPage({
                   <dd>{photo.shutterSpeed}</dd>
                 </div>
               )}
-              {photo.iso && photo.iso > 0 && (
+              {photo.iso !== undefined && photo.iso > 0 && (
                 <div>
                   <dt>ISO</dt>
                   <dd>{photo.iso}</dd>

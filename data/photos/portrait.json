@@ -69,7 +69,10 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2022-04-12"
+    "dateCaptured": "2022-04-12",
+    "location": "Narayanganj",
+    "country": "Bangladesh",
+    "story": "A playful jump interrupts the stillness of sunset, giving the frame a human rhythm and a little remembered joy."
   },
   {
     "id": "portrait-sunset-on-the-roof",
@@ -87,8 +90,8 @@
     "fileSize": 223841,
     "sourceModifiedAt": "2026-10-07T10:03:08.674Z",
     "dateAdded": "2015-09-26",
-    "featured": false,
-    "homepageFeatured": false,
+    "featured": true,
+    "homepageFeatured": true,
     "tags": [
       "old-mobile",
       "portrait",
@@ -105,7 +108,11 @@
     "aperture": "Not recorded",
     "shutterSpeed": "Not recorded",
     "iso": 0,
-    "dateCaptured": "2015-09-26"
+    "dateCaptured": "2015-09-26",
+    "location": "Narayanganj",
+    "country": "Bangladesh",
+    "story": "From the rooftop, the figure watches the sun leave the day. The old phone preserves both the person and the pause.",
+    "featuredOrder": 3
   },
   {
     "id": "portrait-001",
