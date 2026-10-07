@@ -2,19 +2,27 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { getFeaturedPhotos } from "@/lib/photos";
+import { SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const serif = Cormorant_Garamond({ subsets: ["latin"], variable: "--font-serif", display: "swap", weight: ["400", "500", "600"] });
-const siteUrl = "https://photos.tashanto.com";
+const defaultImage = getFeaturedPhotos()[0];
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: { default: "TA Shanto — Photography", template: "%s — TA Shanto Photography" },
-  description: "A personal photography portfolio by TA Shanto: quiet stories of people, places, light and time.",
+  description: "Photography portfolio of TA Shanto, a Dhaka-based photographer documenting streets, people, landscapes and everyday life across Bangladesh and beyond.",
+  keywords: ["TA Shanto Photography", "Bangladesh photographer", "Dhaka street photography", "Bangladesh photography", "travel photography Bangladesh", "photography portfolio Bangladesh"],
+  authors: [{ name: "TA Shanto", url: "https://tashanto.com" }],
+  creator: "TA Shanto",
+  publisher: "TA Shanto",
+  category: "Photography",
   alternates: { canonical: "/" },
-  openGraph: { type: "website", url: siteUrl, siteName: "TA Shanto Photography", title: "TA Shanto — Photography", description: "Stories through light, color and time." },
-  twitter: { card: "summary_large_image", title: "TA Shanto — Photography", description: "Stories through light, color and time." },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
+  openGraph: { type: "website", url: SITE_URL, siteName: SITE_NAME, locale: "en_US", title: "TA Shanto — Photography", description: "Street, travel, portrait and landscape photography from Bangladesh and beyond.", images: [{ url: defaultImage.src, width: defaultImage.width, height: defaultImage.height, alt: defaultImage.alt }] },
+  twitter: { card: "summary_large_image", title: "TA Shanto — Photography", description: "Street, travel, portrait and landscape photography from Bangladesh and beyond.", images: [defaultImage.src] },
   icons: { icon: "/favicon.svg" },
 };
 
@@ -22,8 +30,8 @@ export const viewport: Viewport = { colorScheme: "dark", themeColor: "#0a0a0a" }
 
 const structuredData = {
   "@context": "https://schema.org", "@graph": [
-    { "@type": "WebSite", name: "TA Shanto Photography", url: siteUrl },
-    { "@type": "Person", name: "TA Shanto", url: "https://tashanto.com", jobTitle: "Photographer" },
+    { "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: SITE_NAME, url: SITE_URL, description: "The photography portfolio of TA Shanto." },
+    { "@type": "Person", "@id": `${SITE_URL}/#person`, name: "TA Shanto", url: "https://tashanto.com", jobTitle: "Photographer", homeLocation: { "@type": "Place", name: "Dhaka, Bangladesh" }, sameAs: [absoluteUrl("/"), "https://tashanto.com"] },
   ],
 };
 

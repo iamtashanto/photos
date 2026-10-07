@@ -13,7 +13,7 @@ export function HomeHero({ photo }: { photo: Photo }) {
   return (
     <section className="home-hero">
       <motion.div className="hero-image" initial={{ opacity: 0, scale: reduceMotion ? 1 : 1.018 }} animate={{ opacity: 1, scale: 1 }} transition={transition}>
-        <Image src={photo.src} alt={photo.alt} fill priority sizes="100vw" quality={90} />
+        <Image src={photo.src} alt={photo.alt} fill preload sizes="100vw" quality={90} />
       </motion.div>
       <div className="hero-shade" />
       <div className="hero-copy">

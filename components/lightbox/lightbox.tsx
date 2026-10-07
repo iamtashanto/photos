@@ -63,7 +63,7 @@ export function Lightbox({ photos, index, onClose, onChange }: { photos: Photo[]
       </motion.div>
       <AnimatePresence mode="wait">
         <motion.div key={photo.id} className="lightbox-image" initial={{ opacity: 0, x: reduceMotion ? 0 : direction * 14, scale: reduceMotion ? 1 : .992 }} animate={{ opacity: 1, x: 0, scale: 1 }} exit={{ opacity: 0, x: reduceMotion ? 0 : direction * -8 }} transition={{ duration: reduceMotion ? 0 : .24, ease: [0.22, 1, 0.36, 1] }}>
-          <Image src={photo.src} alt={photo.alt} fill sizes="100vw" quality={92} priority />
+          <Image src={photo.src} alt={photo.alt} fill sizes="100vw" quality={92} loading="eager" fetchPriority="high" />
         </motion.div>
       </AnimatePresence>
       <button className="lightbox-prev" onClick={() => change(-1)} aria-label="Previous photograph"><ArrowLeft /></button>

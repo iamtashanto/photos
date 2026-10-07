@@ -28,6 +28,7 @@ The included images and records are clearly marked sample content. Replace them 
 ### Recommended photo preparation
 
 - Export JPEG, WebP, or AVIF in sRGB.
+- Rename exports descriptively before adding them: use `rainy-evening-old-dhaka.jpg`, not `IMG_5840.JPG`. Keep filenames lowercase and separate words with hyphens.
 - Use 2400–3200 px on the long edge for most portfolio photographs; reserve larger files only when they materially improve fullscreen viewing.
 - Aim for roughly 300–900 KB per image after visual quality review.
 - Strip unnecessary metadata if privacy matters, but retain capture information in the relevant `data/photos/<category>.ts` file when you want it shown.
@@ -58,6 +59,17 @@ The contact form validates locally and opens a prefilled email draft—there is 
 7. After DNS verification, Vercel provisions HTTPS automatically. Set `photos.tashanto.com` as the primary domain.
 
 The canonical origin is already configured as `https://photos.tashanto.com` in metadata, sitemap, and robots output.
+
+## Google Search Console
+
+After the production domain is live:
+
+1. Add `photos.tashanto.com` to Google Search Console. A domain property is preferred when you can add the requested DNS verification record.
+2. Complete ownership verification through your domain provider.
+3. Submit `https://photos.tashanto.com/sitemap.xml` in the **Sitemaps** section.
+4. Use **URL Inspection** to request indexing for the homepage, Gallery, important collections, and your strongest photograph pages.
+
+Search Console is optional and the website works normally without it. Analytics is not installed; Vercel Analytics or Google Analytics can be added later if measurement is needed.
 
 ## Image CDN migration
 
