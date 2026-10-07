@@ -1,0 +1,41 @@
+[
+  {
+    "id": "still-life-001",
+    "slug": "fruit-and-book",
+    "title": "Fruit and Book",
+    "description": "Fruit, paper and soft window light form a contemporary still life with an old-world calm.",
+    "src": "/photos/still-life/fruit-and-book.jpg",
+    "width": 3000,
+    "height": 2000,
+    "orientation": "landscape",
+    "category": "Still Life",
+    "location": "Studio",
+    "country": "Unspecified",
+    "camera": "Fujifilm X-T20",
+    "lens": "Not recorded",
+    "focalLength": "Not recorded",
+    "aperture": "Not recorded",
+    "shutterSpeed": "Not recorded",
+    "iso": 0,
+    "featured": false,
+    "tags": [
+      "still life",
+      "fruit",
+      "book"
+    ],
+    "alt": "Fruit arranged beside an open book in soft natural light",
+    "dominantColor": "#281818",
+    "credit": "Andrey Metelev / Unsplash",
+    "sourceUrl": "https://unsplash.com/photos/BgvI8PmuO_Q",
+    "aspectRatio": 1.5,
+    "collection": "still-life",
+    "dateCaptured": "2025-09-27",
+    "dateAdded": "2025-09-27",
+    "homepageFeatured": false,
+    "createdAt": "2025-09-27",
+    "updatedAt": "2026-10-07T05:18:00.621Z",
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAANABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAUBAgP/xAAiEAABAwMEAwEAAAAAAAAAAAABAAIRAwQSEzFBURQhMoH/xAAVAQEBAAAAAAAAAAAAAAAAAAACAf/EABYRAQEBAAAAAAAAAAAAAAAAAAARIf/aAAwDAQACEQMRAD8ATvs6/jNuKgFOm4iCdyDzHSgWOLXh85D2Y4HBPSbXVw/QwEBjfQb0lNe4Jn6l30ct0NJk22a4TqgfqFVtLUBdMSdoQnUj/9k=",
+    "fileSize": 939922,
+    "sourceModifiedAt": "2026-10-07T04:58:00.471Z"
+  }
+]

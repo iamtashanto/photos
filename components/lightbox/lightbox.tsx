@@ -5,7 +5,8 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ExternalLink, Info, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { formatPhotoDate } from "@/lib/photos";
+import { formatPhotoDate, getPhotoLocation } from "@/lib/photos";
+import { getPhotoUrl } from "@/lib/image-source";
 import type { Photo } from "@/types/photography";
 
 export function Lightbox({ photos, index, onClose, onChange }: { photos: Photo[]; index: number; onClose: () => void; onChange: (index: number) => void }) {
@@ -63,13 +64,13 @@ export function Lightbox({ photos, index, onClose, onChange }: { photos: Photo[]
       </motion.div>
       <AnimatePresence mode="wait">
         <motion.div key={photo.id} className="lightbox-image" initial={{ opacity: 0, x: reduceMotion ? 0 : direction * 14, scale: reduceMotion ? 1 : .992 }} animate={{ opacity: 1, x: 0, scale: 1 }} exit={{ opacity: 0, x: reduceMotion ? 0 : direction * -8 }} transition={{ duration: reduceMotion ? 0 : .24, ease: [0.22, 1, 0.36, 1] }}>
-          <Image src={photo.src} alt={photo.alt} fill sizes="100vw" quality={92} loading="eager" fetchPriority="high" />
+          <Image src={getPhotoUrl(photo)} alt={photo.alt} fill sizes="100vw" quality={92} loading="eager" fetchPriority="high" placeholder={photo.blurDataURL ? "blur" : "empty"} blurDataURL={photo.blurDataURL} />
         </motion.div>
       </AnimatePresence>
       <button className="lightbox-prev" onClick={() => change(-1)} aria-label="Previous photograph"><ArrowLeft /></button>
       <button className="lightbox-next" onClick={() => change(1)} aria-label="Next photograph"><ArrowRight /></button>
-      <div className="lightbox-caption"><div><strong>{photo.title}</strong><span>{photo.location}, {photo.country}</span></div><Link href={`/photo/${photo.slug}`}>View story <ExternalLink /></Link></div>
-      <AnimatePresence>{info && <motion.aside className="lightbox-info" initial={{ opacity: 0, x: reduceMotion ? 0 : 14 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: reduceMotion ? 0 : 10 }} transition={{ duration: reduceMotion ? 0 : .22, ease: [0.22, 1, 0.36, 1] }}><p>{formatPhotoDate(photo.date, true)}</p><dl><div><dt>Camera</dt><dd>{photo.camera}</dd></div><div><dt>Lens</dt><dd>{photo.lens}</dd></div><div><dt>Exposure</dt><dd>{photo.aperture} · {photo.shutterSpeed} · ISO {photo.iso || "—"}</dd></div>{photo.credit && <div><dt>Photo Credit</dt><dd>{photo.credit}</dd></div>}</dl><small>Press I to toggle details</small></motion.aside>}</AnimatePresence>
+      <div className="lightbox-caption"><div><strong>{photo.title}</strong><span>{getPhotoLocation(photo)}</span></div><Link href={`/photo/${photo.slug}`}>View story <ExternalLink /></Link></div>
+      <AnimatePresence>{info && <motion.aside className="lightbox-info" initial={{ opacity: 0, x: reduceMotion ? 0 : 14 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: reduceMotion ? 0 : 10 }} transition={{ duration: reduceMotion ? 0 : .22, ease: [0.22, 1, 0.36, 1] }}><p>{formatPhotoDate(photo.dateCaptured, true)}</p><dl>{photo.camera && <div><dt>Camera</dt><dd>{photo.camera}</dd></div>}{photo.lens && <div><dt>Lens</dt><dd>{photo.lens}</dd></div>}{(photo.aperture || photo.shutterSpeed || photo.iso) && <div><dt>Exposure</dt><dd>{[photo.aperture, photo.shutterSpeed, photo.iso && `ISO ${photo.iso}`].filter(Boolean).join(" · ")}</dd></div>}{photo.credit && <div><dt>Photo Credit</dt><dd>{photo.credit}</dd></div>}</dl><small>Press I to toggle details</small></motion.aside>}</AnimatePresence>
     </motion.div>
   );
 }

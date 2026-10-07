@@ -1,0 +1,41 @@
+[
+  {
+    "id": "wildlife-001",
+    "slug": "black-kite-in-flight",
+    "title": "Black Kite",
+    "description": "A dark-winged kite turns through clear air, its gaze fixed beyond the frame.",
+    "src": "/photos/wildlife/black-kite.jpg",
+    "width": 3000,
+    "height": 3750,
+    "orientation": "portrait",
+    "category": "Wildlife",
+    "location": "Arvidsjaur",
+    "country": "Sweden",
+    "camera": "Sony α7R IV",
+    "lens": "Not recorded",
+    "focalLength": "Not recorded",
+    "aperture": "Not recorded",
+    "shutterSpeed": "Not recorded",
+    "iso": 0,
+    "featured": false,
+    "tags": [
+      "wildlife",
+      "bird",
+      "flight"
+    ],
+    "alt": "A black kite flying against a softly blurred natural background",
+    "dominantColor": "#282828",
+    "credit": "Christoph Nolte / Unsplash",
+    "sourceUrl": "https://unsplash.com/photos/2yJklGFqlug",
+    "aspectRatio": 0.8,
+    "collection": "wildlife",
+    "dateCaptured": "2024-08-20",
+    "dateAdded": "2024-08-20",
+    "homepageFeatured": false,
+    "createdAt": "2024-08-20",
+    "updatedAt": "2026-10-07T05:18:01.048Z",
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAAZABQDASIAAhEBAxEB/8QAGgAAAQUBAAAAAAAAAAAAAAAAAAECBAUGA//EACIQAAIBAwQCAwAAAAAAAAAAAAECAAMEEQUSQVETMRQikf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFhEBAQEAAAAAAAAAAAAAAAAAABEh/9oADAMBAAIRAxEAPwC+N0iLudgo7Jj1uFYAqQQeRMtqN2Da8n7D02IzTq7nc4c019AA5z+xdVrvKISkS9IQBn3HvGMwlRnHq70KmJRqGnT255nKECV8k9wkWED/2Q==",
+    "fileSize": 785481,
+    "sourceModifiedAt": "2026-10-07T04:57:53.230Z"
+  }
+]

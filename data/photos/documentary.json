@@ -1,0 +1,41 @@
+[
+  {
+    "id": "documentary-001",
+    "slug": "market-aisle",
+    "title": "Market Aisle",
+    "description": "A crowded aisle holds the layered gestures, exchanges and details of everyday commerce.",
+    "src": "/photos/documentary/market-aisle.jpg",
+    "width": 3000,
+    "height": 2007,
+    "orientation": "landscape",
+    "category": "Documentary",
+    "location": "Local Market",
+    "country": "Türkiye",
+    "camera": "Film scan",
+    "lens": "Not recorded",
+    "focalLength": "Not recorded",
+    "aperture": "Not recorded",
+    "shutterSpeed": "Not recorded",
+    "iso": 0,
+    "featured": false,
+    "tags": [
+      "documentary",
+      "market",
+      "daily life"
+    ],
+    "alt": "People moving through a busy covered market aisle",
+    "dominantColor": "#080808",
+    "credit": "Onur Kurt / Unsplash",
+    "sourceUrl": "https://unsplash.com/photos/fKdUakd75kU",
+    "aspectRatio": 1.494768,
+    "collection": "documentary",
+    "dateCaptured": "2026-05-14",
+    "dateAdded": "2026-05-14",
+    "homepageFeatured": false,
+    "createdAt": "2026-05-14",
+    "updatedAt": "2026-10-07T05:17:59.938Z",
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMFBP/EACEQAAICAgMAAgMAAAAAAAAAAAECAxEABBIhMUFCYaHR/8QAFAEBAAAAAAAAAAAAAAAAAAAAA//EABgRAAMBAQAAAAAAAAAAAAAAAAABESEx/9oADAMBAAIRAxEAPwBUIMW7F0VqMsQLo9/zG7Il3ZA8TuoChhye6+K6zBNLINqGRG4siX+8qwctvTEbsVvxl64+eYLyCJ9hGk15LFKkfXgYi/z7hliCHX4sjwIzRsULH7V84YkYeH//2Q==",
+    "fileSize": 1057638,
+    "sourceModifiedAt": "2026-10-07T04:57:59.130Z"
+  }
+]

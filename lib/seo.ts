@@ -14,7 +14,8 @@ export function photoCreator(photo: Photo) {
 }
 
 export function photoSeoDescription(photo: Photo) {
-  return `${photo.description} ${photo.category} photography from ${photo.location}, ${photo.country}.`;
+  const location = [photo.location || photo.city, photo.country].filter(Boolean).join(", ");
+  return [photo.description || `${photo.title}, a ${photo.category.toLowerCase()} photograph.`, location && `${photo.category} photography from ${location}.`].filter(Boolean).join(" ");
 }
 
 export function createPageMetadata(title: string, description: string, path: string): Metadata {

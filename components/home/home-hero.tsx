@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import type { Photo } from "@/types/photography";
+import { getPhotoUrl } from "@/lib/image-source";
 
 export function HomeHero({ photo }: { photo: Photo }) {
   const reduceMotion = useReducedMotion();
@@ -13,7 +14,7 @@ export function HomeHero({ photo }: { photo: Photo }) {
   return (
     <section className="home-hero">
       <motion.div className="hero-image" initial={{ opacity: 0, scale: reduceMotion ? 1 : 1.018 }} animate={{ opacity: 1, scale: 1 }} transition={transition}>
-        <Image src={photo.src} alt={photo.alt} fill preload sizes="100vw" quality={90} />
+        <Image src={getPhotoUrl(photo)} alt={photo.alt} fill preload sizes="100vw" quality={90} />
       </motion.div>
       <div className="hero-shade" />
       <div className="hero-copy">

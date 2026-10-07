@@ -1,0 +1,41 @@
+[
+  {
+    "id": "food-001",
+    "slug": "biryani-at-home",
+    "title": "Biryani at Home",
+    "description": "A generous plate of biryani turns a familiar meal into a study of colour, texture and comfort.",
+    "src": "/photos/food/bangladeshi-biryani.jpg",
+    "width": 3000,
+    "height": 2000,
+    "orientation": "landscape",
+    "category": "Food",
+    "location": "Dhaka",
+    "country": "Bangladesh",
+    "camera": "Nikon D3300",
+    "lens": "Not recorded",
+    "focalLength": "Not recorded",
+    "aperture": "Not recorded",
+    "shutterSpeed": "Not recorded",
+    "iso": 0,
+    "featured": false,
+    "tags": [
+      "food",
+      "biryani",
+      "Bangladesh"
+    ],
+    "alt": "A colourful plate of Bangladeshi biryani served with accompaniments",
+    "dominantColor": "#583818",
+    "credit": "Mohammad Fahim / Unsplash",
+    "sourceUrl": "https://unsplash.com/photos/cLJa_074rcA",
+    "aspectRatio": 1.5,
+    "collection": "food",
+    "dateCaptured": "2026-03-02",
+    "dateAdded": "2026-03-02",
+    "homepageFeatured": false,
+    "createdAt": "2026-03-02",
+    "updatedAt": "2026-10-07T05:18:00.002Z",
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAANABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAQF/8QAIhAAAgEEAgEFAAAAAAAAAAAAAQIDAAQREiExFDJBYYHR/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAaEQACAgMAAAAAAAAAAAAAAAAAARExAhIh/9oADAMBAAIRAxEAPwDMso4pdmkbVVYA4HZq25tooIEKht3J4OOv2smKSW1cyQSa7epSMg/VXJdS3rKZxHlfdU1JHzzQ5WooRbSPFzggdilV5NKMo4f/2Q==",
+    "fileSize": 784102,
+    "sourceModifiedAt": "2026-10-07T04:57:56.659Z"
+  }
+]

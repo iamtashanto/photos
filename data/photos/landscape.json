@@ -1,0 +1,41 @@
+[
+  {
+    "id": "landscape-001",
+    "slug": "rural-horizon",
+    "title": "Rural Horizon",
+    "description": "Palms rise above an open field beneath a broad blue sky, a quiet study of scale and distance.",
+    "src": "/photos/landscape/rural-bangladesh.jpg",
+    "width": 3000,
+    "height": 2247,
+    "orientation": "landscape",
+    "category": "Landscape",
+    "location": "Rural Bangladesh",
+    "country": "Bangladesh",
+    "camera": "Realme RMX3491",
+    "lens": "Built-in lens",
+    "focalLength": "Not recorded",
+    "aperture": "Not recorded",
+    "shutterSpeed": "Not recorded",
+    "iso": 0,
+    "featured": true,
+    "tags": [
+      "landscape",
+      "rural",
+      "palms"
+    ],
+    "alt": "Tall palm trees standing above a green field under a blue sky",
+    "dominantColor": "#0868a8",
+    "credit": "Ashikul Islam Anik / Unsplash",
+    "sourceUrl": "https://unsplash.com/photos/929JkT8KGxs",
+    "aspectRatio": 1.335113,
+    "collection": "landscape",
+    "dateCaptured": "2026-03-06",
+    "dateAdded": "2026-03-06",
+    "homepageFeatured": true,
+    "createdAt": "2026-03-06",
+    "updatedAt": "2026-10-07T05:18:00.086Z",
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAEDBP/EAB8QAAICAQUBAQAAAAAAAAAAAAECABEDBBIhMUGBsf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAGBEAAwEBAAAAAAAAAAAAAAAAAAEDUQL/2gAMAwEAAhEDEQA/AMinBfrAegR2nJKgr4B2ItM2kQc4m3VV3KZDpnQgKF62jbX5E6vSKnzhFAj2SCpBogcwlhlwqK3v8EI1ZaByR//Z",
+    "fileSize": 1497494,
+    "sourceModifiedAt": "2026-10-07T04:57:52.439Z"
+  }
+]

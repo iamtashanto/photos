@@ -1,0 +1,41 @@
+[
+  {
+    "id": "macro-001",
+    "slug": "coneflower-study",
+    "title": "Coneflower Study",
+    "description": "The geometry of a coneflower fills the frame, revealing detail usually passed at a glance.",
+    "src": "/photos/macro/coneflower-detail.jpg",
+    "width": 3000,
+    "height": 2000,
+    "orientation": "landscape",
+    "category": "Macro",
+    "location": "Huber Heights, Ohio",
+    "country": "United States",
+    "camera": "Canon EOS 77D",
+    "lens": "Not recorded",
+    "focalLength": "Not recorded",
+    "aperture": "Not recorded",
+    "shutterSpeed": "Not recorded",
+    "iso": 0,
+    "featured": false,
+    "tags": [
+      "macro",
+      "flower",
+      "texture"
+    ],
+    "alt": "Close macro view of the textured centre and petals of a coneflower",
+    "dominantColor": "#080808",
+    "credit": "Jace Abshire / Unsplash",
+    "sourceUrl": "https://unsplash.com/photos/_vyDa3STjPg",
+    "aspectRatio": 1.5,
+    "collection": "macro",
+    "dateCaptured": "2018-09-09",
+    "dateAdded": "2018-09-09",
+    "homepageFeatured": false,
+    "createdAt": "2018-09-09",
+    "updatedAt": "2026-10-07T05:18:00.157Z",
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAANABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMBBAb/xAAfEAEAAQQCAwEAAAAAAAAAAAABAgADESEEEhMxUcH/xAAVAQEBAAAAAAAAAAAAAAAAAAACAf/EABcRAQEBAQAAAAAAAAAAAAAAAAAhARH/2gAMAwEAAhEDEQA/AM/w5Hkww7roxTuRx4xtM0nbR67Db+VRtykTGKxc+yn3nySkyyo4VdtTlGZlLTrrBr7RUMvoNFIK/9k=",
+    "fileSize": 1059026,
+    "sourceModifiedAt": "2026-10-07T04:57:55.373Z"
+  }
+]

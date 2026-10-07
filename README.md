@@ -19,11 +19,59 @@ npm start
 
 ## Add a photograph
 
-1. Prepare the image and place it in `public/photos/<category>/`.
-2. Add one typed metadata record to the matching file in `data/photos/`—for example, Street photos go in `data/photos/street.ts`.
-3. Commit and push. Vercel will rebuild the gallery, photo page, collection, sitemap, and metadata automatically. No component changes are needed.
+1. Export a web-ready image and place it in `public/photos/<category>/`.
+2. Run `npm run photos:sync`.
+3. Edit the generated entry in the matching `data/photos/<category>.json` file.
+4. Run `npm run photos:validate`, then commit and push. Vercel rebuilds the gallery, photo page, collection, sitemap, and metadata automatically.
 
-The included images and records are clearly marked sample content. Replace them before launch. Keep the same local path architecture or change only the `src` field when migrating to an image CDN later—the UI consumes a provider-agnostic `Photo` record.
+The sync command detects dimensions, orientation, safe EXIF fields, a tiny blur placeholder, dominant colour and file size. Re-running it preserves human-written titles, descriptions, stories, locations, tags, alt text and featured settings. It never renames, deletes or modifies photographs.
+
+## Photography workflow
+
+### Add a new photo
+
+Use a descriptive lowercase filename such as `rainy-evening-old-dhaka.jpg`, then copy it to its category folder—for example `public/photos/street/`. Avoid camera filenames such as `IMG_8372.JPG`, `DSC01923.JPG`, or ambiguous names such as `final-photo-2-new.jpg`.
+
+To preview an optional safe rename, run `npm run photos:rename -- --from street/IMG_8372.JPG --to street/rainy-evening-old-dhaka.jpg`. Nothing changes without the explicit `--apply` flag. Add `--apply` only after reviewing the paths, then run sync. Existing creative metadata is retained.
+
+Run:
+
+```bash
+npm run photos:sync
+```
+
+For `public/photos/street/rainy-evening-dhaka.jpg`, the command creates an entry in `data/photos/street.json`. It detects `width`, `height`, `aspectRatio`, `orientation`, camera/lens/exposure details when available, `blurDataURL`, `dominantColor`, and file size. GPS, serial numbers, maker notes and private EXIF fields are never published.
+
+### Edit creative metadata
+
+Open the generated JSON entry and review these fields:
+
+- `title`, `description`, and optional `story`
+- `alt` and remove `altNeedsReview` after writing accurate alt text
+- optional `location`, `city`, `country`, and `dateCaptured`
+- `tags`, `featured`, and `homepageFeatured`
+- optional `featuredOrder` or `sortOrder`
+
+Technical fields are refreshed by sync; creative fields are preserved. `dateAdded` controls the Latest Frames section, while `dateCaptured` describes when the photograph was made.
+
+### Validate and audit
+
+```bash
+npm run photos:validate
+npm run photos:audit
+```
+
+Validation catches duplicate IDs/slugs/sources, missing files, invalid categories, dimensions, orientations and dates. Optional creative or EXIF metadata produces review warnings rather than blocking the build. The audit warns above 4 MB and marks files above 8 MB as critical; customize with `PHOTO_WARN_MB` and `PHOTO_CRITICAL_MB`.
+
+Production builds automatically run `photos:validate` first.
+
+### Remove or move a photo safely
+
+Delete both the web image and its JSON entry in the same commit. If only the image is removed, validation reports the exact broken `src`; sync never silently deletes metadata. To change collection, move the image to the new category folder, run sync, transfer any creative metadata to the new entry, then remove the old entry after review.
+
+### Collection covers and featured work
+
+Collections derive their photographs and counts directly from photo metadata. Set `coverPhotoSlug` in `data/collections.ts` when you want a specific cover; otherwise the first ordered photograph is used. Set `homepageFeatured: true` to include a photograph on the homepage and optionally use `featuredOrder` for precise ordering.
 
 ### Recommended photo preparation
 
@@ -36,10 +84,13 @@ The included images and records are clearly marked sample content. Replace them 
 - Write specific alt text that describes what is visible, not the filename.
 - Set `dominantColor` to a representative dark/mid tone for a polished loading state.
 - Mark only a few photographs as `featured`; the first featured photograph is the homepage LCP image.
+- Keep camera-original 20–50 MB files in a private archive outside this deployed repository. Only web-ready exports belong in `public/photos/`.
+- A practical target is 2400–3200 px on the long edge and roughly 300–900 KB; retain a larger web export only when fullscreen presentation genuinely benefits.
+- Dedicated thumbnails are intentionally not generated. Next.js Image Optimization creates correctly sized AVIF/WebP responses without duplicating every photograph in Git.
 
 ## Content locations
 
-- Photography metadata: category files inside `data/photos/`
+- Photography metadata: category JSON files inside `data/photos/`
 - Combined photo export: `data/photos.ts` (normally no editing needed)
 - Collection introductions/covers: `data/collections.ts`
 - Biography and gear: `app/about/page.tsx`
@@ -73,4 +124,11 @@ Search Console is optional and the website works normally without it. Analytics 
 
 ## Image CDN migration
 
-All display components receive the typed `Photo` model rather than importing files directly. To adopt Cloudinary, S3, or R2 later, update the photo `src` values and add the CDN host to `next.config.ts`. The page and gallery architecture does not need to change.
+All display components receive the typed `Photo` model and URL handling is isolated from filtering and page composition. To adopt Cloudinary, S3, or R2 later, update the metadata source/URL resolver and add the CDN host to `next.config.ts`. The page and gallery architecture does not need to change.
+
+## Requirements
+
+- Node.js 20.9 or newer
+- No globally installed image utilities
+
+`sharp` performs local image inspection and placeholder generation; `exifr` reads a deliberately limited set of EXIF fields. Both run only in developer scripts, not in the browser.

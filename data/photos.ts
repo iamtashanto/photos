@@ -1,33 +1,20 @@
-import { architecturePhotos } from "@/data/photos/architecture";
-import { blackAndWhitePhotos } from "@/data/photos/black-and-white";
-import { documentaryPhotos } from "@/data/photos/documentary";
-import { foodPhotos } from "@/data/photos/food";
-import { landscapePhotos } from "@/data/photos/landscape";
-import { macroPhotos } from "@/data/photos/macro";
-import { miscellaneousPhotos } from "@/data/photos/miscellaneous";
-import { naturePhotos } from "@/data/photos/nature";
-import { nightPhotos } from "@/data/photos/night";
-import { portraitPhotos } from "@/data/photos/portrait";
-import { stillLifePhotos } from "@/data/photos/still-life";
-import { streetPhotos } from "@/data/photos/street";
-import { travelPhotos } from "@/data/photos/travel";
-import { wildlifePhotos } from "@/data/photos/wildlife";
+import architecture from "@/data/photos/architecture.json";
+import blackAndWhite from "@/data/photos/black-and-white.json";
+import documentary from "@/data/photos/documentary.json";
+import food from "@/data/photos/food.json";
+import landscape from "@/data/photos/landscape.json";
+import macro from "@/data/photos/macro.json";
+import miscellaneous from "@/data/photos/miscellaneous.json";
+import nature from "@/data/photos/nature.json";
+import night from "@/data/photos/night.json";
+import portrait from "@/data/photos/portrait.json";
+import stillLife from "@/data/photos/still-life.json";
+import street from "@/data/photos/street.json";
+import travel from "@/data/photos/travel.json";
+import wildlife from "@/data/photos/wildlife.json";
 import type { Photo } from "@/types/photography";
 
-// Add new photographs to the matching category file in data/photos/.
-export const photos: Photo[] = [
-  ...streetPhotos,
-  ...naturePhotos,
-  ...landscapePhotos,
-  ...travelPhotos,
-  ...portraitPhotos,
-  ...architecturePhotos,
-  ...wildlifePhotos,
-  ...macroPhotos,
-  ...foodPhotos,
-  ...nightPhotos,
-  ...blackAndWhitePhotos,
-  ...documentaryPhotos,
-  ...stillLifePhotos,
-  ...miscellaneousPhotos,
-];
+// Category JSON files are validated by `npm run photos:validate` before builds.
+const groups = [street, nature, landscape, travel, portrait, architecture, wildlife, macro, food, night, blackAndWhite, documentary, stillLife, miscellaneous];
+
+export const photos = groups.flat() as Photo[];
