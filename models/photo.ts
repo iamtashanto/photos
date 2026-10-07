@@ -29,6 +29,7 @@ export type PhotoMetadataInput = {
 };
 
 export type PhotoUpdateInput = Partial<PhotoMetadataInput> & {
+  collection?: string;
   published?: boolean;
   sortOrder?: number;
   featuredOrder?: number;
@@ -84,7 +85,7 @@ export function parsePhotoUpdates(input: unknown): PhotoUpdateInput {
   if (!input || typeof input !== "object") throw new Error("Photo updates must be an object.");
   const source = input as Record<string, unknown>;
   const updates: PhotoUpdateInput = {};
-  for (const field of ["slug", "title", "category", "alt", "description", "story", "location", "city", "country", "dateCaptured"] as const) {
+  for (const field of ["slug", "title", "category", "collection", "alt", "description", "story", "location", "city", "country", "dateCaptured"] as const) {
     if (source[field] !== undefined) {
       const value = text(source[field], field, field === "description" ? 2000 : field === "story" ? 5000 : field === "alt" ? 300 : 160, true);
       if (field === "category" && (!value || value.length < 2)) throw new Error("Category is invalid.");

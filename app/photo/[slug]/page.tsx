@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { ShareButton } from "@/components/shared/share-button";
+import { PhotoLikeButton } from "@/components/photo/photo-like-button";
 import {
   formatPhotoDate,
   getAdjacentPhotos,
@@ -149,6 +150,7 @@ export default async function PhotoPage({
             downloadUrl={getPhotoUrl(photo)}
             downloadName={`${photo.slug}${photo.src.slice(photo.src.lastIndexOf("."))}`}
           />
+          <PhotoLikeButton slug={photo.slug} />
         </header>
 
         <div className="story-copy">
