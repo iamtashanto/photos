@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { PhotoDocument } from "@/models/photo";
+import { photoCategories, type PhotoDocument } from "@/models/photo";
 
 type FormState = {
   slug: string; title: string; category: string; collection: string; alt: string;
@@ -27,11 +27,12 @@ function toForm(photo?: PhotoDocument): FormState {
   };
 }
 
-export function PhotoUploadForm({ editing, onSaved, onCancel, onError }: {
+export function PhotoUploadForm({ editing, onSaved, onCancel, onError, collections }: {
   editing?: PhotoDocument;
   onSaved: () => Promise<void>;
   onCancel: () => void;
   onError: (message: string) => void;
+  collections: Array<{ slug: string; name: string }>;
 }) {
   const [form, setForm] = useState<FormState>(() => toForm(editing));
   const [pending, setPending] = useState(false);
@@ -79,8 +80,8 @@ export function PhotoUploadForm({ editing, onSaved, onCancel, onError }: {
       <div className="admin-form-grid">
         <label>Title<input value={form.title} onChange={(event) => update("title", event.target.value)} required /></label>
         <label>Slug<input value={form.slug} onChange={(event) => update("slug", event.target.value)} placeholder="rainy-evening-dhaka" required disabled={Boolean(editing)} /></label>
-        <label>Category<input value={form.category} onChange={(event) => update("category", event.target.value)} required /></label>
-        <label>Collection<input value={form.collection} onChange={(event) => update("collection", event.target.value)} placeholder="street" /></label>
+        <label>Category<select value={form.category} onChange={(event) => update("category", event.target.value)} required>{photoCategories.map((category) => <option value={category} key={category}>{category}</option>)}</select></label>
+        <label>Collection<select value={form.collection} onChange={(event) => update("collection", event.target.value)}><option value="">No collection</option>{collections.map((collection) => <option value={collection.slug} key={collection.slug}>{collection.name}</option>)}</select></label>
         <label>Location<input value={form.location} onChange={(event) => update("location", event.target.value)} /></label>
         <label>Date captured<input type="date" value={form.dateCaptured} onChange={(event) => update("dateCaptured", event.target.value)} /></label>
         <label className="admin-span-2">Alt text<input value={form.alt} onChange={(event) => update("alt", event.target.value)} required /></label>
