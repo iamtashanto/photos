@@ -22,6 +22,11 @@ export function Navbar() {
   const menuRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
 
+  // Close menu on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -36,11 +41,20 @@ export function Navbar() {
         menuButtonRef.current?.focus();
       }
       if (event.key === "Tab") {
-        const focusable = [menuButtonRef.current, ...Array.from(menuRef.current?.querySelectorAll<HTMLElement>("a[href]") ?? [])].filter(Boolean) as HTMLElement[];
+        const focusable = [
+          menuButtonRef.current,
+          ...Array.from(menuRef.current?.querySelectorAll<HTMLElement>("a[href]") ?? []),
+        ].filter(Boolean) as HTMLElement[];
         const first = focusable[0];
         const last = focusable.at(-1);
-        if (event.shiftKey && document.activeElement === first && last) { event.preventDefault(); last.focus(); }
-        if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        if (event.shiftKey && document.activeElement === first && last) {
+          event.preventDefault();
+          last.focus();
+        }
+        if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     };
     document.body.style.overflow = "hidden";
@@ -52,26 +66,82 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className={`site-header ${pathname === "/" && !scrolled ? "hero-header" : ""} ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}>
-      <Link href="/" className="wordmark" aria-label="TA Shanto Photography home">
-        <span>TA SHANTO</span><small>PHOTOGRAPHY</small>
+    <header
+      className={`site-header ${pathname === "/" && !scrolled ? "hero-header" : ""} ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}
+    >
+      <Link href="/" className="wordmark" aria-label="TA Shanto Photography — home">
+        <span>TA SHANTO</span>
+        <small>PHOTOGRAPHY</small>
       </Link>
+
       <div className="nav-actions">
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {links.map(([label, href]) => <Link className={pathname.startsWith(href) ? "active" : ""} href={href} key={href}>{label}</Link>)}
+          {links.map(([label, href]) => (
+            <Link
+              className={pathname.startsWith(href) ? "active" : ""}
+              href={href}
+              key={href}
+              aria-current={pathname.startsWith(href) ? "page" : undefined}
+            >
+              {label}
+            </Link>
+          ))}
         </nav>
         <ThemeToggle />
-        <button ref={menuButtonRef} className="menu-button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>
-          {open ? <X /> : <Menu />}
+        <button
+          ref={menuButtonRef}
+          className="menu-button"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
       </div>
+
       <AnimatePresence>
         {open && (
-          <motion.nav ref={menuRef} id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduceMotion ? 0 : .24, ease: [0.22, 1, 0.36, 1] }}>
+          <motion.nav
+            ref={menuRef}
+            id="mobile-navigation"
+            className="mobile-nav"
+            aria-label="Mobile navigation"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className="mobile-nav-inner">
-              {links.map(([label, href], index) => <motion.div key={href} initial={{ opacity: 0, y: reduceMotion ? 0 : 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduceMotion ? 0 : -4 }} transition={{ duration: reduceMotion ? 0 : .3, delay: reduceMotion ? 0 : .035 + index * .04, ease: [0.22, 1, 0.36, 1] }}><Link href={href} onClick={() => setOpen(false)}><span>0{index + 1}</span>{label}</Link></motion.div>)}
+              {links.map(([label, href], index) => (
+                <motion.div
+                  key={href}
+                  initial={{ opacity: 0, y: reduceMotion ? 0 : 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: reduceMotion ? 0 : -4 }}
+                  transition={{
+                    duration: reduceMotion ? 0 : 0.3,
+                    delay: reduceMotion ? 0 : 0.035 + index * 0.04,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <Link
+                    href={href}
+                    onClick={() => setOpen(false)}
+                    aria-current={pathname.startsWith(href) ? "page" : undefined}
+                  >
+                    <span>0{index + 1}</span>
+                    {label}
+                  </Link>
+                </motion.div>
+              ))}
             </div>
-            <div className="mobile-nav-meta"><span>Dhaka, Bangladesh</span><a href="https://tashanto.com" target="_blank" rel="noreferrer">Developer portfolio ↗</a></div>
+            <div className="mobile-nav-meta">
+              <span>Dhaka, Bangladesh</span>
+              <a href="https://tashanto.com" target="_blank" rel="noreferrer">
+                Developer portfolio ↗
+              </a>
+            </div>
           </motion.nav>
         )}
       </AnimatePresence>

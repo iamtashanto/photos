@@ -1,1 +1,9 @@
-export default function Loading() { return <div className="page-loading" aria-label="Loading"><span /><span /><span /></div>; }
+export default function Loading() {
+  return (
+    <div className="page-loading" role="status" aria-label="Loading">
+      <span aria-hidden="true" />
+      <span aria-hidden="true" />
+      <span aria-hidden="true" />
+    </div>
+  );
+}
