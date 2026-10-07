@@ -27,6 +27,14 @@ npm run photos:migrate
 npm run photos:migrate -- --upload
 ```
 
+The same idempotent database seed is available as:
+
+```bash
+npm run db:seed
+```
+
+This seeds the existing photo metadata and collections. Create the admin user separately with `npm run admin:create`.
+
 Open `/admin` to upload new images. Public reads are cached for five minutes and admin writes invalidate the photo cache.
 
 The server uses Mongoose models for photos, collections, users, and visitor likes. Photos support published/draft state, featured ordering, dynamic category values, and Cloudinary asset cleanup on deletion. Admin APIs support photo CRUD, collection CRUD, publishing updates, and visitor like/unlike/count endpoints.
