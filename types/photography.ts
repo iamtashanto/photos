@@ -26,6 +26,8 @@ export interface Photo {
   tags: string[];
   alt: string;
   dominantColor: string;
+  credit?: string;
+  sourceUrl?: string;
 }
 
 export interface Collection {

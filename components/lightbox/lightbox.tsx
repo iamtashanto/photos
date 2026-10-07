@@ -52,7 +52,7 @@ export function Lightbox({ photos, index, onClose, onChange }: { photos: Photo[]
       <button className="lightbox-prev" onClick={() => change(-1)} aria-label="Previous photograph"><ArrowLeft /></button>
       <button className="lightbox-next" onClick={() => change(1)} aria-label="Next photograph"><ArrowRight /></button>
       <div className="lightbox-caption"><div><strong>{photo.title}</strong><span>{photo.location}, {photo.country}</span></div><Link href={`/photo/${photo.slug}`}>View story <ExternalLink /></Link></div>
-      <AnimatePresence>{info && <motion.aside className="lightbox-info" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 24 }}><p>{formatPhotoDate(photo.date, true)}</p><dl><div><dt>Camera</dt><dd>{photo.camera}</dd></div><div><dt>Lens</dt><dd>{photo.lens}</dd></div><div><dt>Exposure</dt><dd>{photo.aperture} · {photo.shutterSpeed} · ISO {photo.iso}</dd></div></dl><small>Press I to toggle details</small></motion.aside>}</AnimatePresence>
+      <AnimatePresence>{info && <motion.aside className="lightbox-info" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 24 }}><p>{formatPhotoDate(photo.date, true)}</p><dl><div><dt>Camera</dt><dd>{photo.camera}</dd></div><div><dt>Lens</dt><dd>{photo.lens}</dd></div><div><dt>Exposure</dt><dd>{photo.aperture} · {photo.shutterSpeed} · ISO {photo.iso || "—"}</dd></div>{photo.credit && <div><dt>Demo credit</dt><dd>{photo.credit}</dd></div>}</dl><small>Press I to toggle details</small></motion.aside>}</AnimatePresence>
     </motion.div>
   );
 }
