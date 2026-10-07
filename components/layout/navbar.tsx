@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -18,6 +18,8 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
@@ -31,6 +33,13 @@ export function Navbar() {
       if (event.key === "Escape") {
         setOpen(false);
         menuButtonRef.current?.focus();
+      }
+      if (event.key === "Tab") {
+        const focusable = [menuButtonRef.current, ...Array.from(menuRef.current?.querySelectorAll<HTMLElement>("a[href]") ?? [])].filter(Boolean) as HTMLElement[];
+        const first = focusable[0];
+        const last = focusable.at(-1);
+        if (event.shiftKey && document.activeElement === first && last) { event.preventDefault(); last.focus(); }
+        if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
       }
     };
     document.body.style.overflow = "hidden";
@@ -54,9 +63,9 @@ export function Navbar() {
       </button>
       <AnimatePresence>
         {open && (
-          <motion.nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .25 }}>
+          <motion.nav ref={menuRef} id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduceMotion ? 0 : .24, ease: [0.22, 1, 0.36, 1] }}>
             <div className="mobile-nav-inner">
-              {links.map(([label, href], index) => <motion.div key={href} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .04 + index * .045 }}><Link href={href} onClick={() => setOpen(false)}><span>0{index + 1}</span>{label}</Link></motion.div>)}
+              {links.map(([label, href], index) => <motion.div key={href} initial={{ opacity: 0, y: reduceMotion ? 0 : 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduceMotion ? 0 : -4 }} transition={{ duration: reduceMotion ? 0 : .3, delay: reduceMotion ? 0 : .035 + index * .04, ease: [0.22, 1, 0.36, 1] }}><Link href={href} onClick={() => setOpen(false)}><span>0{index + 1}</span>{label}</Link></motion.div>)}
             </div>
             <div className="mobile-nav-meta"><span>Dhaka, Bangladesh</span><a href="https://tashanto.com" target="_blank" rel="noreferrer">Developer portfolio ↗</a></div>
           </motion.nav>
