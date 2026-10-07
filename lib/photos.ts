@@ -12,7 +12,7 @@ export const getAllPhotos = () => orderPhotos(photos);
 export const getFeaturedPhotos = () => [...photos]
   .filter((photo) => photo.homepageFeatured || photo.featured)
   .sort((a, b) => (a.featuredOrder ?? Number.MAX_SAFE_INTEGER) - (b.featuredOrder ?? Number.MAX_SAFE_INTEGER) || b.dateAdded.localeCompare(a.dateAdded));
-export const getLatestPhotos = (limit = 4) => [...photos].sort((a, b) => b.dateAdded.localeCompare(a.dateAdded)).slice(0, limit);
+export const getLatestPhotos = (limit = 4) => [...photos].filter((photo) => !photo.altNeedsReview).sort((a, b) => b.dateAdded.localeCompare(a.dateAdded)).slice(0, limit);
 export const getRecentPhotos = getLatestPhotos;
 export const getPhotoBySlug = (slug: string) => photos.find((photo) => photo.slug === slug);
 export const getPhotosByCategory = (category: PhotoCategory) => orderPhotos(photos.filter((photo) => photo.category === category));
