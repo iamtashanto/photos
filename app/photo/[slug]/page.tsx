@@ -145,7 +145,10 @@ export default async function PhotoPage({
             {photo.location || photo.city ? ` / ${photo.location || photo.city}` : ""}
           </p>
           <h1>{photo.title}</h1>
-          <ShareButton />
+          <ShareButton
+            downloadUrl={getPhotoUrl(photo)}
+            downloadName={`${photo.slug}${photo.src.slice(photo.src.lastIndexOf("."))}`}
+          />
         </header>
 
         <div className="story-copy">

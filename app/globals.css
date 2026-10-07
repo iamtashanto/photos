@@ -873,6 +873,7 @@ main { min-height: 80vh; }
   letter-spacing: -0.04em;
 }
 
+.photo-actions { display: flex; gap: 0.6rem; align-items: center; }
 .share-button {
   border: 1px solid var(--line);
   background: none;
@@ -1332,7 +1333,7 @@ main { min-height: 80vh; }
   .photo-story { padding: 5rem 1.25rem; }
   .photo-story header { display: block; }
   .photo-story h1 { margin: 1.5rem 0; }
-  .share-button { margin-top: 1rem; }
+  .photo-actions { margin-top: 1rem; }
   .story-copy { display: block; padding-top: 2.5rem; }
   .story-copy > p { margin-bottom: 4rem; font-size: clamp(1.6rem, 6vw, 2.2rem); }
   .metadata dl div { grid-template-columns: 90px 1fr; }

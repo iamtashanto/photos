@@ -1,9 +1,9 @@
 "use client";
 
-import { Check, Link as LinkIcon } from "lucide-react";
+import { Check, Download, Link as LinkIcon } from "lucide-react";
 import { useState } from "react";
 
-export function ShareButton() {
+export function ShareButton({ downloadUrl, downloadName }: { downloadUrl: string; downloadName: string }) {
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -27,9 +27,15 @@ export function ShareButton() {
   }
 
   return (
-    <button className="share-button" onClick={copy} aria-label={copied ? "Link copied" : "Copy link to this photograph"}>
-      {copied ? <Check aria-hidden="true" /> : <LinkIcon aria-hidden="true" />}
-      {copied ? "Copied" : "Copy link"}
-    </button>
+    <div className="photo-actions">
+      <button className="share-button" onClick={copy} aria-label={copied ? "Link copied" : "Copy link to this photograph"}>
+        {copied ? <Check aria-hidden="true" /> : <LinkIcon aria-hidden="true" />}
+        {copied ? "Copied" : "Copy link"}
+      </button>
+      <a className="share-button" href={downloadUrl} download={downloadName} aria-label={`Download ${downloadName}`}>
+        <Download aria-hidden="true" />
+        Download
+      </a>
+    </div>
   );
 }
