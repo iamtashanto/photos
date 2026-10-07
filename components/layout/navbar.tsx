@@ -43,8 +43,8 @@ export function Navbar() {
 
   return (
     <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}>
-      <Link href="/" className="wordmark" aria-label="Tashanto Photography home">
-        <span>TASHANTO</span><small>PHOTOGRAPHY</small>
+      <Link href="/" className="wordmark" aria-label="TA Shanto Photography home">
+        <span>TA SHANTO</span><small>PHOTOGRAPHY</small>
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
         {links.map(([label, href]) => <Link className={pathname.startsWith(href) ? "active" : ""} href={href} key={href}>{label}</Link>)}

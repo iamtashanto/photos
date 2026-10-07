@@ -4,9 +4,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { PhotoCard } from "./photo-card";
 import { Lightbox } from "@/components/lightbox/lightbox";
+import { photoCategories } from "@/types/photography";
 import type { Photo, PhotoCategory } from "@/types/photography";
 
-const filters: Array<"All" | Exclude<PhotoCategory, "Miscellaneous">> = ["All", "Street", "Nature", "Travel", "Portrait", "Architecture"];
+const filters: Array<"All" | PhotoCategory> = ["All", ...photoCategories];
 
 export function GalleryExperience({ photos, showFilters = true }: { photos: Photo[]; showFilters?: boolean }) {
   const [filter, setFilter] = useState<(typeof filters)[number]>("All");

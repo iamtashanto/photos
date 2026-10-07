@@ -10,11 +10,11 @@ const siteUrl = "https://photos.tashanto.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: "Tashanto — Photography", template: "%s — Tashanto Photography" },
-  description: "A personal photography portfolio by Md Tanvir Ahamed Shanto: quiet stories of people, places, light and time.",
+  title: { default: "TA Shanto — Photography", template: "%s — TA Shanto Photography" },
+  description: "A personal photography portfolio by TA Shanto: quiet stories of people, places, light and time.",
   alternates: { canonical: "/" },
-  openGraph: { type: "website", url: siteUrl, siteName: "Tashanto Photography", title: "Tashanto — Photography", description: "Stories through light, color and time." },
-  twitter: { card: "summary_large_image", title: "Tashanto — Photography", description: "Stories through light, color and time." },
+  openGraph: { type: "website", url: siteUrl, siteName: "TA Shanto Photography", title: "TA Shanto — Photography", description: "Stories through light, color and time." },
+  twitter: { card: "summary_large_image", title: "TA Shanto — Photography", description: "Stories through light, color and time." },
   icons: { icon: "/favicon.svg" },
 };
 
@@ -22,8 +22,8 @@ export const viewport: Viewport = { colorScheme: "dark", themeColor: "#0a0a0a" }
 
 const structuredData = {
   "@context": "https://schema.org", "@graph": [
-    { "@type": "WebSite", name: "Tashanto Photography", url: siteUrl },
-    { "@type": "Person", name: "Md Tanvir Ahamed Shanto", alternateName: "TA Shanto", url: "https://tashanto.com", jobTitle: "Photographer" },
+    { "@type": "WebSite", name: "TA Shanto Photography", url: siteUrl },
+    { "@type": "Person", name: "TA Shanto", url: "https://tashanto.com", jobTitle: "Photographer" },
   ],
 };
 

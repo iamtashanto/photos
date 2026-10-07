@@ -1,6 +1,6 @@
-# Tashanto Photography
+# TA Shanto Photography
 
-A production-ready personal photography portfolio for **Md Tanvir Ahamed Shanto**, built with Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, and local image assets.
+A production-ready personal photography portfolio for **TA Shanto**, built with Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, and local image assets.
 
 ## Run locally
 

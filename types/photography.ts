@@ -1,4 +1,8 @@
-export const photoCategories = ["Street", "Nature", "Travel", "Portrait", "Architecture", "Miscellaneous"] as const;
+export const photoCategories = [
+  "Street", "Nature", "Landscape", "Travel", "Portrait", "Architecture",
+  "Wildlife", "Macro", "Food", "Night", "Black & White", "Documentary",
+  "Still Life", "Miscellaneous",
+] as const;
 
 export type PhotoCategory = (typeof photoCategories)[number];
 export type PhotoOrientation = "portrait" | "landscape" | "square" | "panorama";
