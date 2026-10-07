@@ -14,7 +14,7 @@ export default function Home() {
       <section className="home-hero">
         <Image src={hero.src} alt={hero.alt} fill priority sizes="100vw" quality={90} />
         <div className="hero-shade" />
-        <div className="hero-copy"><p>Md Tanvir Ahamed Shanto</p><h1>Stories through<br /><em>light, color & time.</em></h1></div>
+        <div className="hero-copy"><p>Tashanto / Photography</p><h1>Stories shaped by<br /><em>light, place & time.</em></h1></div>
         <div className="hero-index"><span>Dhaka, Bangladesh</span><Link href={`/photo/${hero.slug}`}>{hero.title} <ArrowUpRight /></Link></div>
         <a className="scroll-cue" href="#selected" aria-label="Scroll to selected work"><ArrowDown /></a>
       </section>

@@ -5,9 +5,10 @@ export function Footer() {
       <div className="footer-links">
         <a href="mailto:hello@tashanto.com">Email</a>
         <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="https://tashanto.com" target="_blank" rel="noreferrer">Portfolio ↗</a>
       </div>
-      <p>© {new Date().getFullYear()} Md Tanvir Ahamed Shanto</p>
+      <div className="footer-place"><p>Based in Bangladesh</p><p>© {new Date().getFullYear()} Md Tanvir Ahamed Shanto</p></div>
     </footer>
   );
 }
