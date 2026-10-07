@@ -38,5 +38,5 @@ const structuredData = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className={`${sans.variable} ${serif.variable}`} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head><body><a className="skip-link" href="#main">Skip to content</a><Navbar /><main id="main">{children}</main><Footer /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} /></body></html>;
+  return <html lang="en" className={`${sans.variable} ${serif.variable}`} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head><body className="m-0 overflow-x-hidden bg-[var(--bg)] font-[family-name:var(--sans)] text-[var(--text)] transition-colors"><a className="fixed -top-20 left-4 z-[1000] bg-[var(--text)] px-4 py-3 text-xs uppercase tracking-widest text-[var(--bg)] focus:top-4" href="#main">Skip to content</a><Navbar /><main id="main" className="min-h-[80vh]">{children}</main><Footer /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} /></body></html>;
 }

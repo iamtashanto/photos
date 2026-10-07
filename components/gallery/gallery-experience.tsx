@@ -21,11 +21,11 @@ export function GalleryExperience({ photos, showFilters = true }: { photos: Phot
   return (
     <>
       {showFilters && (
-        <div className="gallery-filters" role="group" aria-label="Filter gallery by category">
+        <div className="mb-10 flex gap-6 overflow-x-auto border-b border-[var(--line)] pb-4" role="group" aria-label="Filter gallery by category">
           {filters.map((item) => (
             <button
               key={item}
-              className={filter === item ? "active" : ""}
+              className={`shrink-0 border-0 bg-transparent pb-2 text-xs uppercase tracking-widest transition ${filter === item ? "text-[var(--text)] shadow-[inset_0_-1px_var(--text)]" : "text-[var(--muted)] hover:text-[var(--text)]"}`}
               onClick={() => setFilter(item)}
               aria-pressed={filter === item}
             >
@@ -36,7 +36,7 @@ export function GalleryExperience({ photos, showFilters = true }: { photos: Phot
       )}
 
       {visible.length ? (
-        <motion.div layout className="gallery-grid">
+        <motion.div layout className="columns-3 gap-5 max-lg:columns-2 max-sm:columns-1">
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((photo, index) => (
               <motion.div
@@ -51,6 +51,7 @@ export function GalleryExperience({ photos, showFilters = true }: { photos: Phot
                   delay: reduceMotion ? 0 : Math.min(index, 4) * 0.035,
                   ease: [0.22, 1, 0.36, 1],
                 }}
+                className="mb-5 break-inside-avoid"
               >
                 <PhotoCard photo={photo} onOpen={() => setActive(index)} />
               </motion.div>
@@ -58,9 +59,9 @@ export function GalleryExperience({ photos, showFilters = true }: { photos: Phot
           </AnimatePresence>
         </motion.div>
       ) : (
-        <div className="empty-state" role="status" aria-live="polite">
-          <p>No frames in this collection yet.</p>
-          <span>The next photograph may already be on its way.</span>
+        <div className="border-y border-[var(--line)] py-20 text-center" role="status" aria-live="polite">
+          <p className="font-[family-name:var(--serif)] text-3xl">No frames in this collection yet.</p>
+          <span className="text-sm text-[var(--muted)]">The next photograph may already be on its way.</span>
         </div>
       )}
 

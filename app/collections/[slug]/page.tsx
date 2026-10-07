@@ -85,11 +85,11 @@ export default async function CollectionPage({
   };
 
   return (
-    <div className="page-shell collection-detail">
-      <header className="page-intro">
-        <p>Collection / {String(photos.length).padStart(2, "0")} frames</p>
-        <h1>{collection.name}</h1>
-        <span>{collection.description}</span>
+    <div className="mx-auto max-w-[112rem] px-[var(--space-page)] pb-36 pt-[clamp(8rem,14vw,12rem)]">
+      <header className="mb-[clamp(4rem,8vw,8rem)] grid grid-cols-[minmax(11rem,1fr)_2fr] items-end gap-8 max-md:grid-cols-1">
+        <p className="m-0 text-xs uppercase tracking-[.2em] text-[var(--muted)]">Collection / {String(photos.length).padStart(2, "0")} frames</p>
+        <h1 className="m-0 font-[family-name:var(--serif)] text-[clamp(4.2rem,7.6vw,8.5rem)] leading-[.84] tracking-[-.05em]">{collection.name}</h1>
+        <span className="col-start-2 max-w-xl text-[var(--muted)] max-md:col-start-1">{collection.description}</span>
       </header>
 
       <GalleryExperience photos={photos} showFilters={false} />
