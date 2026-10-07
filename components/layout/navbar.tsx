@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const links = [
   ["Gallery", "/gallery"],
@@ -15,8 +15,6 @@ const links = [
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  useEffect(() => setOpen(false), [pathname]);
-
   return (
     <header className="site-header">
       <Link href="/" className="wordmark" aria-label="Tashanto Photography home">
@@ -30,7 +28,7 @@ export function Navbar() {
       </button>
       {open && (
         <nav className="mobile-nav" aria-label="Mobile navigation">
-          {links.map(([label, href], index) => <Link href={href} key={href}><span>0{index + 1}</span>{label}</Link>)}
+          {links.map(([label, href], index) => <Link href={href} key={href} onClick={() => setOpen(false)}><span>0{index + 1}</span>{label}</Link>)}
           <a href="https://tashanto.com" target="_blank" rel="noreferrer">Developer portfolio ↗</a>
         </nav>
       )}
