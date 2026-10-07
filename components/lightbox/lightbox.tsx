@@ -120,7 +120,7 @@ export function Lightbox({
   return (
     <motion.div
       ref={dialogRef}
-      className={`lightbox ${controlsVisible || info ? "controls-visible" : "controls-hidden"}`}
+      className="fixed inset-0 z-[100] cursor-none touch-pan-y bg-[#080808] text-white"
       role="dialog"
       aria-modal="true"
       aria-label={`${photo.title} — fullscreen viewer`}
@@ -146,7 +146,7 @@ export function Lightbox({
       }}
     >
       <motion.div
-        className="lightbox-top"
+        className={`absolute inset-x-0 top-0 z-10 flex items-center justify-between px-6 py-5 text-xs tracking-widest transition-opacity ${controlsVisible || info ? "opacity-100" : "opacity-0"}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: reduceMotion ? 0 : 0.1 }}
@@ -154,7 +154,7 @@ export function Lightbox({
         <span>
           {String(index + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}
         </span>
-        <div>
+        <div className="flex gap-2 [&_button]:grid [&_button]:size-11 [&_button]:place-items-center [&_button]:border [&_button]:border-white/20 [&_button]:bg-black/20 [&_svg]:size-5">
           <button
             ref={infoButtonRef}
             onClick={toggleInfo}
@@ -172,13 +172,13 @@ export function Lightbox({
       <AnimatePresence mode="wait">
         <motion.div
           key={photo.id}
-          className="lightbox-image"
+          className="absolute inset-[4.5rem_6rem_5.5rem] max-sm:inset-[4.2rem_.75rem_7rem]"
           initial={{ opacity: 0, x: reduceMotion ? 0 : direction * 14, scale: reduceMotion ? 1 : 0.992 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           exit={{ opacity: 0, x: reduceMotion ? 0 : direction * -8 }}
           transition={{ duration: reduceMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Image
+          <Image className="object-contain"
             src={getPhotoUrl(photo)}
             alt={photo.alt}
             fill
@@ -192,20 +192,20 @@ export function Lightbox({
         </motion.div>
       </AnimatePresence>
 
-      <button className="lightbox-prev" onClick={() => change(-1)} aria-label="Previous photograph">
+      <button className={`absolute left-5 top-1/2 z-10 grid size-12 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/20 transition-opacity max-sm:bottom-4 max-sm:left-auto max-sm:right-[4.7rem] max-sm:top-auto max-sm:translate-y-0 ${controlsVisible || info ? "opacity-100" : "opacity-0"}`} onClick={() => change(-1)} aria-label="Previous photograph">
         <ArrowLeft aria-hidden="true" />
       </button>
-      <button className="lightbox-next" onClick={() => change(1)} aria-label="Next photograph">
+      <button className={`absolute right-5 top-1/2 z-10 grid size-12 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/20 transition-opacity max-sm:bottom-4 max-sm:top-auto max-sm:translate-y-0 ${controlsVisible || info ? "opacity-100" : "opacity-0"}`} onClick={() => change(1)} aria-label="Next photograph">
         <ArrowRight aria-hidden="true" />
       </button>
 
-      <div className="lightbox-caption">
-        <div>
-          <strong>{photo.title}</strong>
-          <span>{getPhotoLocation(photo)}</span>
+      <div className={`absolute bottom-5 left-6 right-6 z-10 flex items-end justify-between transition-opacity max-sm:right-[8.5rem] ${controlsVisible || info ? "opacity-100" : "opacity-0"}`}>
+        <div className="grid">
+          <strong className="font-[family-name:var(--serif)] text-xl font-normal">{photo.title}</strong>
+          <span className="text-xs text-white/60">{getPhotoLocation(photo)}</span>
         </div>
-        <Link href={`/photo/${photo.slug}`}>
-          View story <ExternalLink aria-hidden="true" />
+        <Link className="flex items-center gap-2 text-xs uppercase tracking-widest max-sm:hidden" href={`/photo/${photo.slug}`}>
+          View story <ExternalLink className="size-4" aria-hidden="true" />
         </Link>
       </div>
 
@@ -213,7 +213,7 @@ export function Lightbox({
         {info && (
           <motion.aside
             ref={infoPanelRef}
-            className="lightbox-info"
+            className="absolute right-6 top-20 z-20 w-[min(24rem,calc(100vw-3rem))] bg-[#171717] p-6 shadow-2xl outline-none max-sm:left-3 max-sm:right-3 max-sm:w-auto"
             tabIndex={-1}
             aria-label="Photograph details"
             initial={{ opacity: 0, x: reduceMotion ? 0 : 14 }}
@@ -221,8 +221,8 @@ export function Lightbox({
             exit={{ opacity: 0, x: reduceMotion ? 0 : 10 }}
             transition={{ duration: reduceMotion ? 0 : 0.22, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p>{formatPhotoDate(photo.dateCaptured, true)}</p>
-            <dl>
+            <p className="mb-5 text-xs uppercase tracking-widest text-white/50">{formatPhotoDate(photo.dateCaptured, true)}</p>
+            <dl className="[&_dd]:m-0 [&_div]:grid [&_div]:grid-cols-[6rem_1fr] [&_div]:border-t [&_div]:border-white/10 [&_div]:py-3 [&_div]:text-sm [&_dt]:text-white/50">
               {photo.camera && (
                 <div>
                   <dt>Camera</dt>
@@ -256,7 +256,7 @@ export function Lightbox({
                 </div>
               )}
             </dl>
-            <small>Press I to toggle details</small>
+            <small className="mt-5 block text-white/40">Press I to toggle details</small>
           </motion.aside>
         )}
       </AnimatePresence>

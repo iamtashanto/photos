@@ -1,9 +1,9 @@
 export default function Loading() {
   return (
-    <div className="page-loading" role="status" aria-label="Loading">
-      <span aria-hidden="true" />
-      <span aria-hidden="true" />
-      <span aria-hidden="true" />
+    <div className="flex min-h-[70vh] items-center justify-center gap-2" role="status" aria-label="Loading">
+      <span className="size-2 animate-pulse rounded-full bg-[var(--muted)]" aria-hidden="true" />
+      <span className="size-2 animate-pulse rounded-full bg-[var(--muted)] [animation-delay:150ms]" aria-hidden="true" />
+      <span className="size-2 animate-pulse rounded-full bg-[var(--muted)] [animation-delay:300ms]" aria-hidden="true" />
     </div>
   );
 }

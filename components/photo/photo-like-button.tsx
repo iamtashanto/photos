@@ -40,5 +40,6 @@ export function PhotoLikeButton({ slug }: { slug: string }) {
     setPending(false);
   }
 
-  return <div className="photo-engagement"><span className="photo-view-count" aria-label={`${views} unique views`}><Eye aria-hidden="true" /><span>{views}</span><small>views</small></span><button type="button" className={`photo-like-button ${liked ? "is-liked" : ""}`} onClick={toggle} disabled={pending} aria-label={liked ? "Remove like" : "Like this photograph"} aria-pressed={liked}><Heart fill={liked ? "currentColor" : "none"} aria-hidden="true" /><span>{likes}</span><small>{likes === 1 ? "like" : "likes"}</small></button></div>;
+  const control = "inline-flex min-h-10 items-center gap-2 border border-[var(--line)] px-3 py-2 text-sm";
+  return <div className="mt-4 flex items-stretch gap-2"><span className={`${control} text-[var(--muted)]`} aria-label={`${views} unique views`}><Eye className="size-4" aria-hidden="true" /><span>{views}</span><small className="text-[.65rem] uppercase tracking-wider">views</small></span><button type="button" className={`${control} bg-transparent ${liked ? "border-rose-400 text-rose-500" : ""}`} onClick={toggle} disabled={pending} aria-label={liked ? "Remove like" : "Like this photograph"} aria-pressed={liked}><Heart className="size-4" fill={liked ? "currentColor" : "none"} aria-hidden="true" /><span>{likes}</span><small className="text-[.65rem] uppercase tracking-wider">{likes === 1 ? "like" : "likes"}</small></button></div>;
 }

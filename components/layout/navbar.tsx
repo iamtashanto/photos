@@ -62,18 +62,18 @@ export function Navbar() {
 
   return (
     <header
-      className={`site-header ${pathname === "/" && !scrolled ? "hero-header" : ""} ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}
+      className={`site-header fixed inset-x-0 top-0 z-50 flex items-center justify-between px-[var(--space-page)] transition-all duration-300 ${scrolled ? "h-[70px] border-b border-[var(--line)] bg-[color-mix(in_srgb,var(--bg)_84%,transparent)] backdrop-blur-xl" : "h-[84px] bg-gradient-to-b from-black/60 to-transparent"} ${pathname === "/" && !scrolled ? "text-stone-100" : "text-[var(--text)]"}`}
     >
-      <Link href="/" className="wordmark" aria-label="TA Shanto Photography — home" onClick={() => setOpen(false)}>
+      <Link href="/" className="relative z-[52] flex flex-col text-sm font-semibold leading-none tracking-[.22em]" aria-label="TA Shanto Photography — home" onClick={() => setOpen(false)}>
         <span>TA SHANTO</span>
-        <small>PHOTOGRAPHY</small>
+        <small className="mt-2 text-[.5rem] tracking-[.42em] text-current opacity-70">PHOTOGRAPHY</small>
       </Link>
 
-      <div className="nav-actions">
-        <nav className="desktop-nav" aria-label="Primary navigation">
+      <div className="flex items-center gap-[clamp(.8rem,2vw,2rem)]">
+        <nav className="flex gap-[clamp(1.7rem,2.5vw,3rem)] text-sm tracking-[.08em] max-[900px]:hidden" aria-label="Primary navigation">
           {links.map(([label, href]) => (
             <Link
-              className={pathname.startsWith(href) ? "active" : ""}
+              className={`relative pb-2 after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:bg-current after:transition-transform ${pathname.startsWith(href) ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100"}`}
               href={href}
               key={href}
               aria-current={pathname.startsWith(href) ? "page" : undefined}
@@ -85,13 +85,13 @@ export function Navbar() {
         <ThemeToggle />
         <button
           ref={menuButtonRef}
-          className="menu-button"
+          className="relative z-[52] hidden size-11 place-items-center border-0 bg-transparent max-[900px]:grid"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-navigation"
           onClick={() => setOpen(!open)}
         >
-          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+          {open ? <X className="size-6" aria-hidden="true" /> : <Menu className="size-6" aria-hidden="true" />}
         </button>
       </div>
 
@@ -100,14 +100,14 @@ export function Navbar() {
           <motion.nav
             ref={menuRef}
             id="mobile-navigation"
-            className="mobile-nav"
+            className="fixed inset-0 z-[51] flex flex-col justify-between bg-[var(--bg)] px-6 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[clamp(7rem,18vh,10rem)] text-[var(--text)]"
             aria-label="Mobile navigation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="mobile-nav-inner">
+            <div className="border-t border-[var(--line)]">
               {links.map(([label, href], index) => (
                 <motion.div
                   key={href}
@@ -120,18 +120,18 @@ export function Navbar() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  <Link
+                  <Link className="block border-b border-[var(--line)] py-2 font-[family-name:var(--serif)] text-[clamp(2.8rem,14vw,5rem)] leading-none"
                     href={href}
                     onClick={() => setOpen(false)}
                     aria-current={pathname.startsWith(href) ? "page" : undefined}
                   >
-                    <span>0{index + 1}</span>
+                    <span className="mr-5 inline-block w-10 align-middle font-[family-name:var(--sans)] text-xs text-[var(--muted)]">0{index + 1}</span>
                     {label}
                   </Link>
                 </motion.div>
               ))}
             </div>
-            <div className="mobile-nav-meta">
+            <div className="flex justify-between gap-4 text-xs text-[var(--muted)]">
               <span>Dhaka, Bangladesh</span>
               <a href="https://tashanto.com" target="_blank" rel="noreferrer">
                 Developer portfolio ↗

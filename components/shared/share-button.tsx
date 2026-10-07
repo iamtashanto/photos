@@ -27,12 +27,12 @@ export function ShareButton({ downloadUrl, downloadName }: { downloadUrl: string
   }
 
   return (
-    <div className="photo-actions">
-      <button className="share-button" onClick={copy} aria-label={copied ? "Link copied" : "Copy link to this photograph"}>
+    <div className="flex items-center gap-2 max-sm:mt-4">
+      <button className="flex items-center gap-2 border border-[var(--line)] bg-transparent px-4 py-3 text-xs transition hover:bg-[var(--text)] hover:text-[var(--bg)]" onClick={copy} aria-label={copied ? "Link copied" : "Copy link to this photograph"}>
         {copied ? <Check aria-hidden="true" /> : <LinkIcon aria-hidden="true" />}
         {copied ? "Copied" : "Copy link"}
       </button>
-      <a className="share-button" href={downloadUrl} download={downloadName} aria-label={`Download ${downloadName}`}>
+      <a className="flex items-center gap-2 border border-[var(--line)] bg-transparent px-4 py-3 text-xs transition hover:bg-[var(--text)] hover:text-[var(--bg)]" href={downloadUrl} download={downloadName} aria-label={`Download ${downloadName}`}>
         <Download aria-hidden="true" />
         Download
       </a>

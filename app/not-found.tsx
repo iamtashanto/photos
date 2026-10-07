@@ -1,3 +1,3 @@
 import Link from "next/link";
 
-export default function NotFound() { return <div className="not-found"><p>404 / Exposed frame</p><h1>Frame not found.</h1><span>This moment may have passed, or perhaps it never existed.</span><Link href="/gallery">Return to the gallery</Link></div>; }
+export default function NotFound() { return <div className="grid min-h-svh place-content-center px-6 text-center"><p className="text-xs uppercase tracking-widest text-[var(--muted)]">404 / Exposed frame</p><h1 className="my-5 font-[family-name:var(--serif)] text-[clamp(4rem,10vw,9rem)] leading-none">Frame not found.</h1><span className="text-[var(--muted)]">This moment may have passed, or perhaps it never existed.</span><Link className="mx-auto mt-8 border-b border-[var(--line)] pb-2 text-xs uppercase tracking-widest" href="/gallery">Return to the gallery</Link></div>; }
