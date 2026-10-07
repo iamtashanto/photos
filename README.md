@@ -20,7 +20,7 @@ npm start
 ## Add a photograph
 
 1. Prepare the image and place it in `public/photos/<category>/`.
-2. Add one typed metadata record to `data/photos.ts`.
+2. Add one typed metadata record to the matching file in `data/photos/`—for example, Street photos go in `data/photos/street.ts`.
 3. Commit and push. Vercel will rebuild the gallery, photo page, collection, sitemap, and metadata automatically. No component changes are needed.
 
 The included images and records are clearly marked sample content. Replace them before launch. Keep the same local path architecture or change only the `src` field when migrating to an image CDN later—the UI consumes a provider-agnostic `Photo` record.
@@ -30,7 +30,7 @@ The included images and records are clearly marked sample content. Replace them 
 - Export JPEG, WebP, or AVIF in sRGB.
 - Use 2400–3200 px on the long edge for most portfolio photographs; reserve larger files only when they materially improve fullscreen viewing.
 - Aim for roughly 300–900 KB per image after visual quality review.
-- Strip unnecessary metadata if privacy matters, but retain capture information in `data/photos.ts` when you want it shown.
+- Strip unnecessary metadata if privacy matters, but retain capture information in the relevant `data/photos/<category>.ts` file when you want it shown.
 - Enter the exact pixel `width` and `height`; Next.js uses them to prevent layout shift.
 - Write specific alt text that describes what is visible, not the filename.
 - Set `dominantColor` to a representative dark/mid tone for a polished loading state.
@@ -38,7 +38,8 @@ The included images and records are clearly marked sample content. Replace them 
 
 ## Content locations
 
-- Photography metadata: `data/photos.ts`
+- Photography metadata: category files inside `data/photos/`
+- Combined photo export: `data/photos.ts` (normally no editing needed)
 - Collection introductions/covers: `data/collections.ts`
 - Biography and gear: `app/about/page.tsx`
 - Contact/social links: `app/contact/page.tsx` and `components/layout/footer.tsx`

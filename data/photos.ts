@@ -1,131 +1,33 @@
+import { architecturePhotos } from "@/data/photos/architecture";
+import { blackAndWhitePhotos } from "@/data/photos/black-and-white";
+import { documentaryPhotos } from "@/data/photos/documentary";
+import { foodPhotos } from "@/data/photos/food";
+import { landscapePhotos } from "@/data/photos/landscape";
+import { macroPhotos } from "@/data/photos/macro";
+import { miscellaneousPhotos } from "@/data/photos/miscellaneous";
+import { naturePhotos } from "@/data/photos/nature";
+import { nightPhotos } from "@/data/photos/night";
+import { portraitPhotos } from "@/data/photos/portrait";
+import { stillLifePhotos } from "@/data/photos/still-life";
+import { streetPhotos } from "@/data/photos/street";
+import { travelPhotos } from "@/data/photos/travel";
+import { wildlifePhotos } from "@/data/photos/wildlife";
 import type { Photo } from "@/types/photography";
 
-// SAMPLE CONTENT — replace these local files and records with your own photographs.
+// Add new photographs to the matching category file in data/photos/.
 export const photos: Photo[] = [
-  {
-    id: "street-001", slug: "after-the-monsoon", title: "Monsoon Crossing",
-    description: "Umbrellas move through the restless rhythm of a Dhaka street, turning an ordinary crossing into a layered city scene.",
-    src: "/photos/street/dhaka-umbrellas.jpg", width: 3000, height: 2000, orientation: "landscape", category: "Street",
-    location: "Dhaka", country: "Bangladesh", date: "2024-03-01", camera: "Fujifilm X-T30", lens: "Not recorded", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: true, tags: ["street", "umbrellas", "Dhaka"], alt: "People walking beneath umbrellas on a busy street in Dhaka", dominantColor: "#3a4141",
-    credit: "Austin Curtis / Unsplash", sourceUrl: "https://unsplash.com/photos/kK199azc-5o",
-  },
-  {
-    id: "nature-001", slug: "first-light-srimangal", title: "Tea Valley",
-    description: "Rows of tea follow the shape of a Sylhet valley, held between deep green shade and a bright open sky.",
-    src: "/photos/nature/sylhet-tea-valley.jpg", width: 3000, height: 1496, orientation: "panorama", category: "Nature",
-    location: "Sylhet", country: "Bangladesh", date: "2024-01-28", camera: "Not recorded", lens: "Not recorded", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: true, tags: ["tea garden", "valley", "green"], alt: "A lush green tea garden valley surrounded by trees in Sylhet", dominantColor: "#53653d",
-    credit: "Mosharraf Hossain / Unsplash", sourceUrl: "https://unsplash.com/photos/i3W2OJRKsL0",
-  },
-  {
-    id: "portrait-001", slug: "window-light", title: "Rafee",
-    description: "A close portrait made in Dhaka during Ramadan, direct in its gaze and quietly generous in its presence.",
-    src: "/photos/portrait/rafee-dhaka.jpg", width: 3000, height: 2122, orientation: "landscape", category: "Portrait",
-    location: "Dhaka", country: "Bangladesh", date: "2017-11-11", camera: "Not recorded", lens: "Not recorded", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: true, tags: ["portrait", "Ramadan", "Dhaka"], alt: "Close portrait of Rafee wearing a floral shirt in Dhaka", dominantColor: "#594f45",
-    credit: "Adrien Taylor / Unsplash", sourceUrl: "https://unsplash.com/photos/PmbPqyfqgA0",
-  },
-  {
-    id: "travel-001", slug: "hills-before-breakfast", title: "The Shipyard",
-    description: "A vessel rests on the edge of Keraniganj, where the scale of industry meets the daily life of the river.",
-    src: "/photos/travel/keraniganj-shipyard.jpg", width: 3000, height: 4046, orientation: "portrait", category: "Travel",
-    location: "Keraniganj Shipyard, Dhaka", country: "Bangladesh", date: "2022-09-20", camera: "Xiaomi M2007J20CI", lens: "Built-in lens", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: false, tags: ["travel", "shipyard", "waterfront"], alt: "A large vessel resting at Keraniganj Shipyard in Dhaka", dominantColor: "#77786f",
-    credit: "Farhana Nidra / Unsplash", sourceUrl: "https://unsplash.com/photos/loBrxtoECjw",
-  },
-  {
-    id: "architecture-001", slug: "city-of-thresholds", title: "Dhaka in Detail",
-    description: "Sunlight catches the ornament and texture of a classical facade, revealing the patient craft held in the city’s architecture.",
-    src: "/photos/architecture/classical-dhaka.jpg", width: 3456, height: 5184, orientation: "portrait", category: "Architecture",
-    location: "Dhaka", country: "Bangladesh", date: "2026-01-21", camera: "Canon EOS 60D", lens: "50mm", focalLength: "50mm", aperture: "f/1.8", shutterSpeed: "1/2500s", iso: 160,
-    featured: true, tags: ["architecture", "classical", "heritage"], alt: "Classical architectural details illuminated by sunlight in Dhaka", dominantColor: "#856e54",
-    credit: "Tanha Tamanna Syed / Pexels", sourceUrl: "https://www.pexels.com/photo/36089157/",
-  },
-  {
-    id: "street-002", slug: "the-long-way-home", title: "The Long Way Home",
-    description: "Evening traffic, wet stone and one last fare through the old city.",
-    src: "/photos/street/the-long-way-home.png", width: 1536, height: 1024, orientation: "landscape", category: "Street",
-    location: "Chawkbazar, Dhaka", country: "Bangladesh", date: "2025-09-29", camera: "iPhone 15", lens: "Main camera", focalLength: "26mm equivalent", aperture: "f/1.6", shutterSpeed: "1/200s", iso: 1000,
-    featured: false, tags: ["rickshaw", "rain", "evening"], alt: "A rickshaw travelling along a reflective street after rain", dominantColor: "#1b2b34",
-  },
-  {
-    id: "portrait-002", slug: "a-quiet-hour", title: "A Quiet Hour",
-    description: "The old room seemed to absorb every sound. The portrait found its own stillness there.",
-    src: "/photos/portrait/a-quiet-hour.png", width: 1024, height: 1536, orientation: "portrait", category: "Portrait",
-    location: "Narayanganj", country: "Bangladesh", date: "2025-08-10", camera: "iPhone 15", lens: "Main camera · 2× crop", focalLength: "52mm equivalent", aperture: "f/1.6", shutterSpeed: "1/320s", iso: 320,
-    featured: false, tags: ["portrait", "available light"], alt: "A contemplative black and white portrait in window light", dominantColor: "#2f2f2f",
-  },
-  {
-    id: "misc-001", slug: "green-silence", title: "River Geometry",
-    description: "A boat and fishing net draw spare lines across the quiet surface of a river in Naogaon.",
-    src: "/photos/miscellaneous/naogaon-river.jpg", width: 3000, height: 2000, orientation: "landscape", category: "Miscellaneous",
-    location: "Chuar Para, Naogaon", country: "Bangladesh", date: "2022-08-22", camera: "Canon EOS 70D", lens: "Not recorded", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: false, tags: ["river", "boat", "fishing"], alt: "A small boat and fishing net on a quiet river in Naogaon", dominantColor: "#777a79",
-    credit: "Neha Maheen Mahfin / Unsplash", sourceUrl: "https://unsplash.com/photos/wIjsVouZAzY",
-  },
-  {
-    id: "landscape-001", slug: "rural-horizon", title: "Rural Horizon",
-    description: "Palms rise above an open field beneath a broad blue sky, a quiet study of scale and distance.",
-    src: "/photos/landscape/rural-bangladesh.jpg", width: 3000, height: 2247, orientation: "landscape", category: "Landscape",
-    location: "Rural Bangladesh", country: "Bangladesh", date: "2026-03-06", camera: "Realme RMX3491", lens: "Built-in lens", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: true, tags: ["landscape", "rural", "palms"], alt: "Tall palm trees standing above a green field under a blue sky", dominantColor: "#7397a6",
-    credit: "Ashikul Islam Anik / Unsplash", sourceUrl: "https://unsplash.com/photos/929JkT8KGxs",
-  },
-  {
-    id: "wildlife-001", slug: "black-kite-in-flight", title: "Black Kite",
-    description: "A dark-winged kite turns through clear air, its gaze fixed beyond the frame.",
-    src: "/photos/wildlife/black-kite.jpg", width: 3000, height: 3750, orientation: "portrait", category: "Wildlife",
-    location: "Arvidsjaur", country: "Sweden", date: "2024-08-20", camera: "Sony α7R IV", lens: "Not recorded", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: false, tags: ["wildlife", "bird", "flight"], alt: "A black kite flying against a softly blurred natural background", dominantColor: "#84908a",
-    credit: "Christoph Nolte / Unsplash", sourceUrl: "https://unsplash.com/photos/2yJklGFqlug",
-  },
-  {
-    id: "macro-001", slug: "coneflower-study", title: "Coneflower Study",
-    description: "The geometry of a coneflower fills the frame, revealing detail usually passed at a glance.",
-    src: "/photos/macro/coneflower-detail.jpg", width: 3000, height: 2000, orientation: "landscape", category: "Macro",
-    location: "Huber Heights, Ohio", country: "United States", date: "2018-09-09", camera: "Canon EOS 77D", lens: "Not recorded", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: false, tags: ["macro", "flower", "texture"], alt: "Close macro view of the textured centre and petals of a coneflower", dominantColor: "#a75b55",
-    credit: "Jace Abshire / Unsplash", sourceUrl: "https://unsplash.com/photos/_vyDa3STjPg",
-  },
-  {
-    id: "food-001", slug: "biryani-at-home", title: "Biryani at Home",
-    description: "A generous plate of biryani turns a familiar meal into a study of colour, texture and comfort.",
-    src: "/photos/food/bangladeshi-biryani.jpg", width: 3000, height: 2000, orientation: "landscape", category: "Food",
-    location: "Dhaka", country: "Bangladesh", date: "2026-03-02", camera: "Nikon D3300", lens: "Not recorded", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: false, tags: ["food", "biryani", "Bangladesh"], alt: "A colourful plate of Bangladeshi biryani served with accompaniments", dominantColor: "#9a633c",
-    credit: "Mohammad Fahim / Unsplash", sourceUrl: "https://unsplash.com/photos/cLJa_074rcA",
-  },
-  {
-    id: "night-001", slug: "city-after-dark", title: "City After Dark",
-    description: "Streetlights and passing cars dissolve into a cinematic study of the city at night.",
-    src: "/photos/night/city-after-dark.jpg", width: 3000, height: 2400, orientation: "landscape", category: "Night",
-    location: "London", country: "United Kingdom", date: "2019-02-14", camera: "Nikon D600", lens: "Not recorded", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: true, tags: ["night", "city", "lights"], alt: "A cinematic city street illuminated by lights after dark", dominantColor: "#15171d",
-    credit: "Victor Cudjoe / Unsplash", sourceUrl: "https://unsplash.com/photos/fd6cljL89EE",
-  },
-  {
-    id: "black-and-white-001", slug: "chicago-in-monochrome", title: "Chicago in Monochrome",
-    description: "Hard lines, winter light and a solitary figure reduce the city to rhythm and tone.",
-    src: "/photos/black-and-white/chicago-lines.jpg", width: 3000, height: 4500, orientation: "portrait", category: "Black & White",
-    location: "Chicago, Illinois", country: "United States", date: "2020-11-09", camera: "Canon EOS 6D", lens: "Not recorded", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: false, tags: ["black and white", "urban", "geometry"], alt: "Monochrome urban architecture and a lone figure in Chicago", dominantColor: "#686868",
-    credit: "Josh Hild / Unsplash", sourceUrl: "https://unsplash.com/photos/6IbaeeMr0Wo",
-  },
-  {
-    id: "documentary-001", slug: "market-aisle", title: "Market Aisle",
-    description: "A crowded aisle holds the layered gestures, exchanges and details of everyday commerce.",
-    src: "/photos/documentary/market-aisle.jpg", width: 3000, height: 2007, orientation: "landscape", category: "Documentary",
-    location: "Local Market", country: "Türkiye", date: "2026-05-14", camera: "Film scan", lens: "Not recorded", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: false, tags: ["documentary", "market", "daily life"], alt: "People moving through a busy covered market aisle", dominantColor: "#75604e",
-    credit: "Onur Kurt / Unsplash", sourceUrl: "https://unsplash.com/photos/fKdUakd75kU",
-  },
-  {
-    id: "still-life-001", slug: "fruit-and-book", title: "Fruit and Book",
-    description: "Fruit, paper and soft window light form a contemporary still life with an old-world calm.",
-    src: "/photos/still-life/fruit-and-book.jpg", width: 3000, height: 2000, orientation: "landscape", category: "Still Life",
-    location: "Studio", country: "Unspecified", date: "2025-09-27", camera: "Fujifilm X-T20", lens: "Not recorded", focalLength: "Not recorded", aperture: "Not recorded", shutterSpeed: "Not recorded", iso: 0,
-    featured: false, tags: ["still life", "fruit", "book"], alt: "Fruit arranged beside an open book in soft natural light", dominantColor: "#765c43",
-    credit: "Andrey Metelev / Unsplash", sourceUrl: "https://unsplash.com/photos/BgvI8PmuO_Q",
-  },
+  ...streetPhotos,
+  ...naturePhotos,
+  ...landscapePhotos,
+  ...travelPhotos,
+  ...portraitPhotos,
+  ...architecturePhotos,
+  ...wildlifePhotos,
+  ...macroPhotos,
+  ...foodPhotos,
+  ...nightPhotos,
+  ...blackAndWhitePhotos,
+  ...documentaryPhotos,
+  ...stillLifePhotos,
+  ...miscellaneousPhotos,
 ];
