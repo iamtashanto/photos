@@ -69,6 +69,8 @@ export default function AdminDashboard({
       featured: photos.filter(
         (photo) => photo.homepageFeatured || photo.featured,
       ).length,
+      views: photos.reduce((total, photo) => total + (photo.views || 0), 0),
+      likes: photos.reduce((total, photo) => total + (photo.likes || 0), 0),
     }),
     [photos],
   );
@@ -217,14 +219,14 @@ export default function AdminDashboard({
                     <small>visible on site</small>
                   </article>
                   <article>
-                    <span>Drafts</span>
-                    <strong>{stats.drafts}</strong>
-                    <small>awaiting review</small>
+                    <span>Unique views</span>
+                    <strong>{stats.views}</strong>
+                    <small>across the archive</small>
                   </article>
                   <article>
-                    <span>Featured</span>
-                    <strong>{stats.featured}</strong>
-                    <small>selected for homepage</small>
+                    <span>Audience likes</span>
+                    <strong>{stats.likes}</strong>
+                    <small>{stats.drafts} drafts · {stats.featured} featured</small>
                   </article>
                 </div>
                 <div className="admin-overview-grid">

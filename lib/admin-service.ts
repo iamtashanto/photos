@@ -4,6 +4,8 @@ import { PhotoModel } from "@/models/photo.model";
 import { uploadPhoto, deletePhoto } from "@/lib/cloudinary";
 import { buildPhotoDocument, parsePhotoMetadata, parsePhotoUpdates } from "@/models/photo";
 import { HttpError } from "@/lib/http";
+import { LikeModel } from "@/models/like.model";
+import { ViewModel } from "@/models/view.model";
 
 function invalidatePhotos() {
   revalidateTag("photos", "max");
@@ -11,7 +13,23 @@ function invalidatePhotos() {
 
 export async function listAdminPhotos() {
   await getMongoose();
-  return PhotoModel.find().sort({ dateAdded: -1, createdAt: -1 }).lean();
+  const photos = await PhotoModel.find().sort({ dateAdded: -1, createdAt: -1 }).lean();
+  const ids = photos.map((photo) => photo._id);
+  const [likes, views] = await Promise.all([
+    LikeModel.aggregate<{ _id: unknown; count: number }>([
+      { $match: { photoId: { $in: ids } } }, { $group: { _id: "$photoId", count: { $sum: 1 } } },
+    ]),
+    ViewModel.aggregate<{ _id: unknown; count: number }>([
+      { $match: { photoId: { $in: ids } } }, { $group: { _id: "$photoId", count: { $sum: 1 } } },
+    ]),
+  ]);
+  const likeCounts = new Map(likes.map((item) => [String(item._id), item.count]));
+  const viewCounts = new Map(views.map((item) => [String(item._id), item.count]));
+  return photos.map((photo) => ({
+    ...photo,
+    likes: likeCounts.get(String(photo._id)) || 0,
+    views: viewCounts.get(String(photo._id)) || 0,
+  }));
 }
 
 export async function createAdminPhoto(file: File, rawMetadata: unknown) {
@@ -58,5 +76,9 @@ export async function removeAdminPhoto(slug: string) {
   const result = await PhotoModel.deleteOne({ slug });
   if (!result.deletedCount) throw new HttpError(404, "Photo not found.");
   if (photo.cloudinaryPublicId) await deletePhoto(photo.cloudinaryPublicId);
+  await Promise.all([
+    LikeModel.deleteMany({ photoId: photo._id }),
+    ViewModel.deleteMany({ photoId: photo._id }),
+  ]);
   invalidatePhotos();
 }

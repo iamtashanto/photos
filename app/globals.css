@@ -176,6 +176,10 @@ body:has(.admin-auth-shell) .site-header, body:has(.admin-auth-shell) .site-foot
 .admin-flags, .admin-row-actions { display: flex; flex-wrap: wrap; gap: .4rem; }
 .admin-flags button, .admin-row-actions button { border: 0; background: none; color: var(--muted); font-size: .65rem; padding: .3rem; }
 .admin-flags button.is-active { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.admin-engagement { display: flex; gap: .85rem; color: var(--muted); }
+.admin-engagement span { display: inline-flex; align-items: center; gap: .3rem; font-variant-numeric: tabular-nums; }
+.admin-engagement svg, .admin-row-actions svg { width: 14px; height: 14px; }
+.admin-row-actions button { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid var(--border); }
 .admin-row-actions .is-danger { color: #ad6b67; }
 .admin-empty, .admin-muted, .admin-loading { color: var(--muted); font-size: .85rem; }
 .admin-alert { border: 1px solid #ad6b67; color: #ad6b67; padding: .8rem 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; }
@@ -192,8 +196,11 @@ body:has(.admin-auth-shell) .site-header, body:has(.admin-auth-shell) .site-foot
 .admin-collection-form input { border: 1px solid var(--border); background: transparent; color: var(--text); padding: .75rem; }
 .admin-collection-form button, .admin-collection-delete { border: 1px solid var(--text); background: var(--text); color: var(--bg); padding: .75rem 1rem; font-size: .65rem; text-transform: uppercase; letter-spacing: .08em; }
 .admin-collection-delete { background: transparent; color: #ad6b67; border-color: #ad6b67; margin-top: 1rem; }
-.photo-like-button { display: inline-flex; gap: .5rem; align-items: center; border: 1px solid var(--border); background: transparent; color: inherit; padding: .65rem .85rem; margin-top: 1rem; }
-.photo-like-button svg { width: 16px; height: 16px; }
+.photo-engagement { display: flex; align-items: stretch; gap: .5rem; margin-top: 1rem; }
+.photo-like-button, .photo-view-count { display: inline-flex; gap: .45rem; align-items: center; border: 1px solid var(--border); background: transparent; color: inherit; padding: .65rem .85rem; margin: 0; min-height: 42px; }
+.photo-like-button svg, .photo-view-count svg { width: 16px; height: 16px; }
+.photo-like-button small, .photo-view-count small { color: var(--muted); font-size: .62rem; text-transform: uppercase; letter-spacing: .08em; }
+.photo-view-count { color: var(--muted); }
 .photo-like-button.is-liked { color: #c96e70; border-color: currentColor; }
 @media (max-width: 850px) { .admin-shell { grid-template-columns: 1fr; } .admin-sidebar { position: static; height: auto; padding: 1rem; border-right: 0; border-bottom: 1px solid var(--border); } .admin-brand { padding: .5rem 0 1rem; } .admin-nav { display: flex; overflow-x: auto; } .admin-sidebar-footer { display: flex; border-top: 0; padding: .5rem 0 0; } .admin-main { padding: 1.25rem; } .admin-stat-grid { grid-template-columns: 1fr 1fr; } .admin-overview-grid { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .admin-topbar { align-items: flex-start; flex-direction: column; gap: 1rem; } .admin-topbar-actions { width: 100%; justify-content: space-between; } .admin-form-grid { grid-template-columns: 1fr; } .admin-span-2 { grid-column: auto; } .admin-heading-actions { flex-direction: column; align-items: stretch; } .admin-search { min-width: 0; } .admin-collection-form { grid-template-columns: 1fr; } }

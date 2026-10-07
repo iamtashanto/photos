@@ -4,6 +4,8 @@ export type PhotoDocument = Photo & {
   cloudinaryPublicId?: string;
   published: boolean;
   migratedAt?: string;
+  likes?: number;
+  views?: number;
 };
 
 export const photoCategories: readonly PhotoCategory[] = [

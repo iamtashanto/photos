@@ -6,6 +6,7 @@ import { PhotoImage } from "@/components/photo/photo-image";
 import {
   getCollectionCover,
   getFeaturedPhotos,
+  getAllPhotos,
   getPhotoLocation,
   getPhotosByCategory,
   getPhotoYear,
@@ -14,9 +15,11 @@ import {
 } from "@/lib/photos";
 
 export default async function Home() {
-  const [featured, recent, collections] = await Promise.all([getFeaturedPhotos(), getRecentPhotos(4), getCollections()]);
-  const hero = featured[0];
-  const selected = featured.filter((photo) => photo.id !== hero.id).slice(0, 4);
+  const [featured, recent, collections, allPhotos] = await Promise.all([getFeaturedPhotos(), getRecentPhotos(4), getCollections(), getAllPhotos()]);
+  const hero = featured[0] || allPhotos[0];
+  const selected = [...featured, ...allPhotos]
+    .filter((photo, index, items) => photo.id !== hero.id && items.findIndex((item) => item.id === photo.id) === index)
+    .slice(0, 4);
   const homeCollections = collections.filter((collection) =>
     ["street", "nature", "travel", "portrait", "architecture", "night"].includes(collection.slug),
   );

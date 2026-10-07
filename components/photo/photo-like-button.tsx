@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart } from "lucide-react";
+import { Eye, Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 
 function getVisitorId() {
@@ -15,11 +15,14 @@ function getVisitorId() {
 export function PhotoLikeButton({ slug }: { slug: string }) {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
+  const [views, setViews] = useState(0);
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
-    void fetch(`/api/photos/${slug}/like/count`).then((response) => response.ok ? response.json() : null).then((data: { likes?: number } | null) => {
+    void fetch(`/api/photos/${slug}/engagement`, { method: "POST", headers: { "x-visitor-id": getVisitorId() } }).then((response) => response.ok ? response.json() : null).then((data: { likes?: number; views?: number; liked?: boolean } | null) => {
       if (data?.likes !== undefined) setLikes(data.likes);
+      if (data?.views !== undefined) setViews(data.views);
+      if (data?.liked !== undefined) setLiked(data.liked);
     });
   }, [slug]);
 
@@ -37,5 +40,5 @@ export function PhotoLikeButton({ slug }: { slug: string }) {
     setPending(false);
   }
 
-  return <button type="button" className={`photo-like-button ${liked ? "is-liked" : ""}`} onClick={toggle} disabled={pending} aria-label={liked ? "Remove like" : "Like this photograph"} aria-pressed={liked}><Heart fill={liked ? "currentColor" : "none"} aria-hidden="true" /><span>{likes}</span></button>;
+  return <div className="photo-engagement"><span className="photo-view-count" aria-label={`${views} unique views`}><Eye aria-hidden="true" /><span>{views}</span><small>views</small></span><button type="button" className={`photo-like-button ${liked ? "is-liked" : ""}`} onClick={toggle} disabled={pending} aria-label={liked ? "Remove like" : "Like this photograph"} aria-pressed={liked}><Heart fill={liked ? "currentColor" : "none"} aria-hidden="true" /><span>{likes}</span><small>{likes === 1 ? "like" : "likes"}</small></button></div>;
 }
