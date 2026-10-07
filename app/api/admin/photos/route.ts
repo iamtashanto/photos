@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createPhotoAction, listPhotosAction, removePhotoAction, updatePhotoAction } from "@/action/admin";
+import { createPhotoAction, listPhotosAction, removePhotoAction, replacePhotoAction, updatePhotoAction } from "@/action/admin";
 import { errorResponse, HttpError, jsonBody } from "@/lib/http";
 
 export async function GET() {
@@ -26,6 +26,15 @@ export async function POST(request: Request) {
 
 export async function PATCH(request: Request) {
   try {
+    if (request.headers.get("content-type")?.includes("multipart/form-data")) {
+      const form = await request.formData();
+      const file = form.get("file");
+      const slug = form.get("slug");
+      const metadata = form.get("metadata");
+      if (!(file instanceof File) || typeof slug !== "string" || typeof metadata !== "string") throw new HttpError(400, "Photo, slug and metadata are required.");
+      await replacePhotoAction(slug, file, JSON.parse(metadata));
+      return NextResponse.json({ ok: true });
+    }
     const body = await jsonBody(request) as { slug?: string; updates?: unknown };
     if (!body.slug || !body.updates) throw new HttpError(400, "Slug and updates are required.");
     await updatePhotoAction(body.slug, body.updates);

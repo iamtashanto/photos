@@ -18,6 +18,7 @@ export type PhotoMetadataInput = {
   slug: string;
   title: string;
   category: PhotoCategory;
+  collection?: string;
   alt?: string;
   description?: string;
   story?: string;
@@ -25,9 +26,21 @@ export type PhotoMetadataInput = {
   city?: string;
   country?: string;
   dateCaptured?: string;
+  camera?: string;
+  lens?: string;
+  focalLength?: string;
+  aperture?: string;
+  shutterSpeed?: string;
+  iso?: number;
+  copyright?: string;
+  credit?: string;
+  sourceUrl?: string;
   tags?: string[];
   featured?: boolean;
   homepageFeatured?: boolean;
+  published?: boolean;
+  sortOrder?: number;
+  featuredOrder?: number;
 };
 
 export type PhotoUpdateInput = Partial<PhotoMetadataInput> & {
@@ -64,6 +77,10 @@ export function parsePhotoMetadata(input: unknown): PhotoMetadataInput {
   const category = text(value.category, "Category", 40, true)! as PhotoCategory;
   if (!slugPattern.test(slug)) throw new Error("Slug must use lowercase letters, numbers, and hyphens only.");
   if (!category || category.length < 2) throw new Error("Category is invalid.");
+  if (value.iso !== undefined && value.iso !== "" && (!Number.isInteger(Number(value.iso)) || Number(value.iso) < 0)) throw new Error("ISO must be a valid non-negative number.");
+  for (const field of ["sortOrder", "featuredOrder"] as const) {
+    if (value[field] !== undefined && (!Number.isInteger(Number(value[field])) || Number(value[field]) < 0)) throw new Error(`${field} must be a non-negative integer.`);
+  }
   const tags = value.tags === undefined ? [] : value.tags;
   if (!Array.isArray(tags) || tags.some((tag) => typeof tag !== "string" || tag.length > 50)) {
     throw new Error("Tags must be an array of short strings.");
@@ -77,9 +94,22 @@ export function parsePhotoMetadata(input: unknown): PhotoMetadataInput {
     city: text(value.city, "City", 100),
     country: text(value.country, "Country", 100),
     dateCaptured: text(value.dateCaptured, "Capture date", 30),
+    collection: text(value.collection, "Collection", 160),
+    camera: text(value.camera, "Camera", 160),
+    lens: text(value.lens, "Lens", 160),
+    focalLength: text(value.focalLength, "Focal length", 50),
+    aperture: text(value.aperture, "Aperture", 50),
+    shutterSpeed: text(value.shutterSpeed, "Shutter speed", 50),
+    iso: value.iso === undefined || value.iso === "" ? undefined : Number(value.iso),
+    copyright: text(value.copyright, "Copyright", 200),
+    credit: text(value.credit, "Credit", 200),
+    sourceUrl: text(value.sourceUrl, "Source URL", 500),
     tags: [...new Set(tags.map((tag) => tag.trim()).filter(Boolean))],
     featured: booleanValue(value.featured, "Featured"),
     homepageFeatured: booleanValue(value.homepageFeatured, "Homepage featured"),
+    published: booleanValue(value.published, "Published"),
+    sortOrder: value.sortOrder === undefined ? undefined : Number(value.sortOrder),
+    featuredOrder: value.featuredOrder === undefined ? undefined : Number(value.featuredOrder),
   };
 }
 
@@ -87,13 +117,20 @@ export function parsePhotoUpdates(input: unknown): PhotoUpdateInput {
   if (!input || typeof input !== "object") throw new Error("Photo updates must be an object.");
   const source = input as Record<string, unknown>;
   const updates: PhotoUpdateInput = {};
-  for (const field of ["slug", "title", "category", "collection", "alt", "description", "story", "location", "city", "country", "dateCaptured"] as const) {
+  for (const field of ["slug", "title", "category", "collection", "alt", "description", "story", "location", "city", "country", "dateCaptured", "camera", "lens", "focalLength", "aperture", "shutterSpeed", "copyright", "credit", "sourceUrl"] as const) {
     if (source[field] !== undefined) {
-      const value = text(source[field], field, field === "description" ? 2000 : field === "story" ? 5000 : field === "alt" ? 300 : 160, true);
+      const required = field === "slug" || field === "title" || field === "category" || field === "alt";
+      const maxLength = field === "description" ? 2000 : field === "story" ? 5000 : field === "sourceUrl" ? 500 : field === "alt" ? 300 : 160;
+      const value = text(source[field], field, maxLength, required);
       if (field === "category" && (!value || value.length < 2)) throw new Error("Category is invalid.");
       if (field === "slug" && !slugPattern.test(value!)) throw new Error("Slug must use lowercase letters, numbers, and hyphens only.");
       updates[field] = value as never;
     }
+  }
+  if (source.iso !== undefined && source.iso !== "") {
+    const iso = Number(source.iso);
+    if (!Number.isInteger(iso) || iso < 0 || iso > 1000000) throw new Error("ISO must be a valid non-negative number.");
+    updates.iso = iso;
   }
   if (source.tags !== undefined) {
     if (!Array.isArray(source.tags) || source.tags.some((tag) => typeof tag !== "string" || tag.length > 50)) throw new Error("Tags must be an array of short strings.");
@@ -134,6 +171,6 @@ export function buildPhotoDocument(
     createdAt: now,
     updatedAt: now,
     cloudinaryPublicId: image.publicId,
-    published: true,
+    published: metadata.published ?? true,
   };
 }

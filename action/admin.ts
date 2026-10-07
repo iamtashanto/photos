@@ -6,6 +6,7 @@ import {
   listAdminPhotos,
   removeAdminPhoto,
   updateAdminPhoto,
+  replaceAdminPhoto,
 } from "@/lib/admin-service";
 
 export async function listPhotosAction() {
@@ -21,6 +22,11 @@ export async function createPhotoAction(file: File, metadata: unknown) {
 export async function updatePhotoAction(slug: string, updates: unknown) {
   await requireAdminSession();
   return updateAdminPhoto(slug, updates);
+}
+
+export async function replacePhotoAction(slug: string, file: File, updates: unknown) {
+  await requireAdminSession();
+  return replaceAdminPhoto(slug, file, updates);
 }
 
 export async function removePhotoAction(slug: string) {

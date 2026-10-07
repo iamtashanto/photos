@@ -69,6 +69,30 @@ export async function updateAdminPhoto(slug: string, rawUpdates: unknown) {
   invalidatePhotos();
 }
 
+export async function replaceAdminPhoto(slug: string, file: File, rawUpdates: unknown) {
+  if (!file.type.startsWith("image/")) throw new HttpError(415, "Only image files are allowed.");
+  if (file.size === 0 || file.size > 15 * 1024 * 1024) throw new HttpError(413, "Image must be between 1 byte and 15 MB.");
+  const updates = parsePhotoUpdates(rawUpdates);
+  delete (updates as Record<string, unknown>).slug;
+  await getMongoose();
+  const current = await PhotoModel.findOne({ slug }).lean();
+  if (!current) throw new HttpError(404, "Photo not found.");
+  const uploaded = await uploadPhoto(Buffer.from(await file.arrayBuffer()), slug);
+  const width = uploaded.width || current.width;
+  const height = uploaded.height || current.height;
+  await PhotoModel.updateOne({ slug }, { $set: {
+    ...updates,
+    src: uploaded.secure_url,
+    cloudinaryPublicId: uploaded.public_id,
+    width,
+    height,
+    aspectRatio: width / height,
+    orientation: width === height ? "square" : width / height < 1 ? "portrait" : width / height > 2 ? "panorama" : "landscape",
+    updatedAt: new Date().toISOString(),
+  } });
+  invalidatePhotos();
+}
+
 export async function removeAdminPhoto(slug: string) {
   await getMongoose();
   const photo = await PhotoModel.findOne({ slug }).lean();

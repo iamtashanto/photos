@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Plus } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Eye, FolderPlus, Heart, ImagePlus, Plus } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { PhotoDocument } from "@/models/photo";
-import { PhotoUploadForm } from "../components/photo-upload-form";
 
 type Collection = { slug: string; name: string };
 
@@ -39,8 +39,11 @@ export function OverviewPage() {
         <article><span>Audience likes</span><strong>{stats.likes}</strong><small>total appreciation</small></article>
       </div>
       <div className="admin-overview-grid">
-        <section className="admin-panel"><div className="admin-panel-heading"><div><p className="admin-kicker">Quick upload</p><h2>Add a photograph</h2></div></div><PhotoUploadForm collections={collections} onSaved={load} onCancel={() => undefined} onError={setError} /></section>
-        <section className="admin-panel admin-recent"><div className="admin-panel-heading"><div><p className="admin-kicker">Latest uploads</p><h2>Recent archive</h2></div><Link href="/admin/photographs">View all</Link></div>{photos.slice(0, 6).map((photo) => <Link className="admin-recent-row" href={`/admin/photographs/${photo.slug}`} key={photo.slug}><span>{photo.title}<small>{photo.category}</small></span><ArrowRight /></Link>)}</section>
+        <section className="admin-panel admin-recent"><div className="admin-panel-heading"><div><p className="admin-kicker">Latest uploads</p><h2>Recent archive</h2></div><Link href="/admin/photographs">View all</Link></div>{photos.slice(0, 6).map((photo) => <Link className="admin-recent-row admin-recent-photo" href={`/admin/photographs/${photo.slug}`} key={photo.slug}><Image src={photo.src} alt="" width={58} height={44} /><span>{photo.title}<small>{photo.category}</small></span><span className="admin-recent-metrics"><span><Eye />{photo.views || 0}</span><span><Heart />{photo.likes || 0}</span></span><ArrowRight /></Link>)}</section>
+        <div className="admin-overview-side">
+          <section className="admin-panel admin-quick-actions"><div className="admin-panel-heading"><div><p className="admin-kicker">Shortcuts</p><h2>Quick actions</h2></div></div><Link href="/admin/photographs"><ImagePlus /><span><strong>Add photograph</strong><small>Upload and publish a new frame</small></span><ArrowRight /></Link><Link href="/admin/collections"><FolderPlus /><span><strong>Create collection</strong><small>Organize photographs into a chapter</small></span><ArrowRight /></Link></section>
+          <section className="admin-panel admin-library-health"><p className="admin-kicker">Library status</p><h2>Archive health</h2><dl><div><dt>Collections</dt><dd>{collections.length}</dd></div><div><dt>Draft photographs</dt><dd>{stats.total - stats.published}</dd></div><div><dt>Published rate</dt><dd>{stats.total ? Math.round((stats.published / stats.total) * 100) : 0}%</dd></div></dl></section>
+        </div>
       </div>
     </>}
   </>;
