@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 const links = [
   ["Gallery", "/gallery"],
@@ -51,16 +52,19 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}>
+    <header className={`site-header ${pathname === "/" && !scrolled ? "hero-header" : ""} ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}>
       <Link href="/" className="wordmark" aria-label="TA Shanto Photography home">
         <span>TA SHANTO</span><small>PHOTOGRAPHY</small>
       </Link>
-      <nav className="desktop-nav" aria-label="Primary navigation">
-        {links.map(([label, href]) => <Link className={pathname.startsWith(href) ? "active" : ""} href={href} key={href}>{label}</Link>)}
-      </nav>
-      <button ref={menuButtonRef} className="menu-button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>
-        {open ? <X /> : <Menu />}
-      </button>
+      <div className="nav-actions">
+        <nav className="desktop-nav" aria-label="Primary navigation">
+          {links.map(([label, href]) => <Link className={pathname.startsWith(href) ? "active" : ""} href={href} key={href}>{label}</Link>)}
+        </nav>
+        <ThemeToggle />
+        <button ref={menuButtonRef} className="menu-button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>
+          {open ? <X /> : <Menu />}
+        </button>
+      </div>
       <AnimatePresence>
         {open && (
           <motion.nav ref={menuRef} id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduceMotion ? 0 : .24, ease: [0.22, 1, 0.36, 1] }}>
